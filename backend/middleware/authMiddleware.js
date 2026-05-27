@@ -1,6 +1,7 @@
 // it works between controller and request to check whether the token is valid or not to authorize the user
-
 const jwt = require("jsonwebtoken");
+
+// ============================================
 
 const protect = async (req, res, next) => {
   let token;
