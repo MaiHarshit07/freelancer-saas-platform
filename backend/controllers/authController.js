@@ -1,6 +1,7 @@
 const User = require("../models/User");
 // got the user from models user.js
 const bcrypt = require("bcryptjs"); //used for hashing of passwords
+const jwt = require("jsonwebtoken");
 
 const registerUser = async (req, res) => {
   const { name, email, password, role } = req.body;
@@ -27,7 +28,7 @@ const loginUser = async (req, res) => {
 
   const user = await User.findOne({ email });
 
-  if (!User) {
+  if (!user) {
     return res.status(400).json({
       message: "User Not Found",
     });
@@ -41,13 +42,55 @@ const loginUser = async (req, res) => {
     });
   }
 
-  console.log(" working");
+  const token = jwt.sign(
+    {
+      id: user._id,
+      role: user.role,
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "7d",
+    },
+  );
+
   res.json({
     message: "Login Successful",
+    token,
+  });
+};
+
+const getProfile = async (req, res) => {
+  const user = await User.findById(req.user.id).select("-password -__v");
+
+  res.json(user);
+};
+
+const updateProfile = async (req, res) => {
+  const user = await User.findById(req.user.id);
+
+  if (!user) {
+    return res.status(404).json({
+      message: "User not found",
+    });
+  }
+
+  user.name = req.body.name || user.name;
+
+  user.role = req.body.role || user.role;
+
+  const updatedUser = await user.save();
+
+  res.json({
+    _id: updatedUser._id,
+    name: updatedUser.name,
+    email: updatedUser.email,
+    role: updatedUser.role,
   });
 };
 
 module.exports = {
   registerUser,
   loginUser,
+  getProfile,
+  updateProfile,
 };
