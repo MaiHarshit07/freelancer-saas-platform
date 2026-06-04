@@ -83,6 +83,7 @@ MongoDB Database
 - [x] Login API
 - [x] Password Hashing
 - [x] JWT Authentication
+- [x] Project management api 
 - [ ] Protected Routes
 - [ ] Frontend Integration
 - [ ] Messaging System
