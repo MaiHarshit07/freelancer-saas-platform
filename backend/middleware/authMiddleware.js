@@ -1,7 +1,5 @@
-// it works between controller and request to check whether the token is valid or not to authorize the user
 const jwt = require("jsonwebtoken");
-
-// ============================================
+const User = require("../models/User");
 
 const protect = async (req, res, next) => {
   let token;
@@ -15,7 +13,7 @@ const protect = async (req, res, next) => {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-      req.user = decoded;
+      req.user = await User.findById(decoded.id).select("-password");
 
       next();
     } catch (error) {

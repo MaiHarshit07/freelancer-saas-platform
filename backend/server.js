@@ -5,6 +5,7 @@ const connectDB = require("./config/db");
 const app = express();
 
 const authRoutes = require("./routes/authRoutes");
+const projectRoutes = require("./routes/projectRoute");
 // db connections
 connectDB();
 
@@ -13,12 +14,14 @@ connectDB();
 // });
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRoutes);
 // ------->   “All routes inside authRoutes belong to authentication module.” sare routes k aage /api/auth aajayega authRoutes ke
 
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
+app.use("/api/projects", projectRoutes);
 
 const PORT = process.env.PORT || 5000;
 

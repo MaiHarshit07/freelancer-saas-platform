@@ -4,7 +4,14 @@ const bcrypt = require("bcryptjs"); //used for hashing of passwords
 const jwt = require("jsonwebtoken");
 
 const registerUser = async (req, res) => {
-  const { name, email, password, role } = req.body;
+  const body = req.body || {};
+  const { name, email, password, role } = body;
+
+  if (!name || !email || !password) {
+    return res.status(400).json({
+      message: "Please provide name, email, and password",
+    });
+  }
 
   const salt = await bcrypt.genSalt(10); // salt matlab some amount of extra characters added taki for even two same pass we could get different hashed values to hackers ko mushkil hogi
 
@@ -24,7 +31,14 @@ const registerUser = async (req, res) => {
 //login controller
 
 const loginUser = async (req, res) => {
-  const { email, password } = req.body;
+  const body = req.body || {};
+  const { email, password } = body;
+
+  if (!email || !password) {
+    return res.status(400).json({
+      message: "Please provide email and password",
+    });
+  }
 
   const user = await User.findOne({ email });
 
