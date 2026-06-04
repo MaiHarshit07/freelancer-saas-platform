@@ -1,6 +1,6 @@
 A full-stack MERN SaaS platform that connects freelancers and clients in a modern scalable ecosystem.
 
-##  Features
+## Features
 
 - User Authentication (JWT)
 - Role-Based Access (Client / Freelancer)
@@ -15,15 +15,17 @@ A full-stack MERN SaaS platform that connects freelancers and clients in a moder
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
 ### Frontend
+
 - React.js
 - Tailwind CSS
 - Axios
 - React Router
 
 ### Backend
+
 - Node.js
 - Express.js
 - MongoDB
@@ -33,7 +35,7 @@ A full-stack MERN SaaS platform that connects freelancers and clients in a moder
 
 ---
 
-##  Backend Architecture
+## Backend Architecture
 
 ```bash
 backend/
@@ -57,7 +59,7 @@ backend/
 
 ---
 
-##  Authentication Flow
+## Authentication Flow
 
 ```text
 Client Request
@@ -73,8 +75,7 @@ MongoDB Database
 
 ---
 
-
-##  Current Progress
+## Current Progress
 
 - [x] Express Server Setup
 - [x] MongoDB Connection
@@ -83,8 +84,7 @@ MongoDB Database
 - [x] Login API
 - [x] Password Hashing
 - [x] JWT Authentication
-- [x] Project management api
-- [ ] proposal system
+- [✔️] Project Management APIs
 - [ ] Protected Routes
 - [ ] Frontend Integration
 - [ ] Messaging System
@@ -92,7 +92,7 @@ MongoDB Database
 
 ---
 
-##  Future Goals
+## Future Goals
 
 - Real-time chat
 - AI-powered recommendations
@@ -103,6 +103,6 @@ MongoDB Database
 
 ---
 
-##  Author
+## Author
 
 Harshit Pandey
