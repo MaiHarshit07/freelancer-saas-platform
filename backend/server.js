@@ -6,6 +6,7 @@ const app = express();
 
 const authRoutes = require("./routes/authRoutes");
 const projectRoutes = require("./routes/projectRoute");
+const proposalRoutes = require("./routes/proposalRoutes");
 // db connections
 connectDB();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRoutes);
 // ------->   “All routes inside authRoutes belong to authentication module.” sare routes k aage /api/auth aajayega authRoutes ke
+app.use("/api/proposals", proposalRoutes);
 
 app.get("/", (req, res) => {
   res.send("API is running...");

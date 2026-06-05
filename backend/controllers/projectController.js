@@ -37,9 +37,58 @@ const getProjectById = async (req, res) => {
 
   res.json(project);
 };
+const updateProject = async (req, res) => {
+  const project = await Project.findById(req.params.id);
+
+  if (!project) {
+    return res.status(404).json({
+      message: "Project not found",
+    });
+  }
+
+  if (project.createdBy.toString() !== req.user.id) {
+    return res.status(403).json({
+      message: "Access denied",
+    });
+  }
+
+  const updatedProject = await Project.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    {
+      new: true,
+    },
+  );
+
+  res.json(updatedProject);
+};
+
+const deleteProject = async (req, res) => {
+  const project = await Project.findById(req.params.id);
+
+  if (!project) {
+    return res.status(404).json({
+      message: "Project not found",
+    });
+  }
+
+  if (project.createdBy.toString() !== req.user.id) {
+    return res.status(403).json({
+      message: "Access denied",
+    });
+  }
+
+  await project.deleteOne();
+
+  res.json({
+    message: "Project deleted successfully",
+  });
+};
 
 module.exports = {
   createProject,
   getProjects,
   getProjectById,
+  updateProject,
+  deleteProject,
 };
