@@ -1,5 +1,5 @@
-const Proposal = require("../models/Proposal");
-const Project = require("../models/Project");
+const Proposal = require("../models/proposal");
+const Project = require("../models/project");
 
 const createProposal = async (req, res) => {
   const { projectId, coverLetter, bidAmount } = req.body;
@@ -31,7 +31,15 @@ const createProposal = async (req, res) => {
 
   res.status(201).json(proposal);
 };
+const getProjectProposals = async (req, res) => {
+  const proposals = await Proposal.find({
+    project: req.params.projectId,
+  }).populate("freelancer", "name email role");
+
+  res.json(proposals);
+};
 
 module.exports = {
   createProposal,
+  getProjectProposals,
 };
