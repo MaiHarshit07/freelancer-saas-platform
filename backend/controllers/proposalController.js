@@ -39,7 +39,48 @@ const getProjectProposals = async (req, res) => {
   res.json(proposals);
 };
 
+const acceptProposal = async (req, res) => {
+  const proposal = await proposal.findById(req.params.id);
+
+  if (!proposal) {
+    return res.status(404).json({
+      message: "Proposal Not Found",
+    });
+  }
+
+  const alreadyAccepted = await Proposal.findOne({
+    project: proposal.project,
+    status: "accepted",
+  });
+
+  if (alreadyAccepted) {
+    return res.status(400).json({
+      message: "Project already has an accepted proposal",
+    });
+  }
+
+  proposal.status = "accepted";
+  await proposal.save();
+  await Proposal.updateMany(
+    {
+      project: proposal.project,
+      _id: { $ne: proposal._id },
+    },
+    {
+      status: "rejected",
+    },
+  );
+
+  const project = await Project.findById(proposal.project);
+  project.status = "in-progress";
+  await project.save();
+  res.json({
+    message: "Proposal accepted successfully",
+  });
+};
+
 module.exports = {
   createProposal,
   getProjectProposals,
+  acceptProposal,
 };
