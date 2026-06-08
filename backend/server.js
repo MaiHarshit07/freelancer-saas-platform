@@ -5,8 +5,9 @@ const connectDB = require("./config/db");
 const app = express();
 
 const authRoutes = require("./routes/authRoutes");
-const projectRoutes = require("./routes/projectRoute");
+const projectRoutes = require("./routes/projectRoutes");
 const proposalRoutes = require("./routes/proposalRoutes");
+const messageRoutes = require("./routes/messageRoutes");
 // db connections
 connectDB();
 
@@ -21,6 +22,7 @@ app.use("/api/auth", authRoutes);
 
 app.use("/api/projects", projectRoutes);
 app.use("/api/proposals", proposalRoutes);
+app.use("/api/messages", messageRoutes);
 
 // ============================================= //
 app.get("/", (req, res) => {

@@ -1,12 +1,17 @@
 const authorizeRoles = (...roles) => {
   return (req, res, next) => {
-    if (!roles.includes(req.user.role)) {
-      return res.status(403).json({
-        message: "Access denied",
-      });
+    if (!req.user || !req.user.role) {
+      return res.status(401).json({ message: "Not authenticated" });
     }
 
-    next();
+    const userRole = String(req.user.role).toLowerCase();
+    const allowed = roles.map((r) => String(r).toLowerCase());
+
+    if (!allowed.includes(userRole)) {
+      return res.status(403).json({ message: "Access denied" });
+    }
+
+    return next();
   };
 };
 

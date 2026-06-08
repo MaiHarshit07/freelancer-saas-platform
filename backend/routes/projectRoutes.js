@@ -11,7 +11,9 @@ const {
 } = require("../controllers/projectController");
 
 const protect = require("../middleware/authMiddleware");
-router.post("/", protect, createProject);
+const authorizeRoles = require("../middleware/roleMiddleware");
+
+router.post("/", protect, authorizeRoles("client"), createProject);
 router.get("/", getProjects);
 router.get("/my-projects", protect, getMyProjects);
 router.get("/:id", getProjectById);

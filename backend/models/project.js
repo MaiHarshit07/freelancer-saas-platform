@@ -33,6 +33,10 @@ const projectSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    assignedFreelancer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
 
   {
@@ -40,5 +44,8 @@ const projectSchema = new mongoose.Schema(
   },
 );
 
-const Project = mongoose.model("Project", projectSchema);
+const Project =
+  mongoose.models.Project || mongoose.model("Project", projectSchema);
+// ******************************     to preventing overwriteModel error somehow even i havent initiated multiple schemas in this project but the error wont go so i have to do this will fixx this bug later        **********************************
+//================= this can be because of two reasons either mongoose.model("A", f1)  and mongoose.model("A", f2) or also can be because of intiantiated schemas twice or more ===========
 module.exports = Project;

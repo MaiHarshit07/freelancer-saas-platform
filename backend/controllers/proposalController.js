@@ -1,5 +1,5 @@
 const Proposal = require("../models/proposal");
-const Project = require("../models/project");
+const Project = require("../models/Project");
 
 const createProposal = async (req, res) => {
   const { projectId, coverLetter, bidAmount } = req.body;
@@ -73,12 +73,20 @@ const acceptProposal = async (req, res) => {
   );
 
   const project = await Project.findById(proposal.project);
+
+  if (project.createdBy.toString() !== req.user.id) {
+    return res.status(403).json({
+      message: "Only project owner can accept proposals",
+    });
+  }
   project.status = "in-progress";
+  project.assignedFreelancer = proposal.freelancer;
   await project.save();
   res.json({
     message: "Proposal accepted successfully",
   });
 };
+
 const getMyProposals = async (req, res) => {
   const proposals = await Proposal.find({
     freelancer: req.user.id,

@@ -10,11 +10,12 @@ const {
   acceptProposal,
   getMyProposals,
 } = require("../controllers/proposalController");
+const authorizeRoles = require("../middleware/roleMiddleware");
 
-router.post("/", protect, createProposal);
+router.post("/", protect, authorizeRoles("freelancer"), createProposal);
 
 router.get("/project/:projectId", protect, getProjectProposals);
 router.get("/my-proposals", protect, getMyProposals);
-router.put("/:id/accept", protect, acceptProposal);
+router.put("/:id/accept", protect, authorizeRoles("client"), acceptProposal);
 
 module.exports = router;
