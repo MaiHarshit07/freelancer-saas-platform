@@ -61,6 +61,7 @@ const acceptProposal = async (req, res) => {
 
   proposal.status = "accepted";
   await proposal.save();
+
   await Proposal.updateMany(
     {
       project: proposal.project,
@@ -78,9 +79,19 @@ const acceptProposal = async (req, res) => {
     message: "Proposal accepted successfully",
   });
 };
+const getMyProposals = async (req, res) => {
+  const proposals = await Proposal.find({
+    freelancer: req.user.id,
+  })
+    .populate("project", "title budget status")
+    .populate("freelancer", "name email");
+
+  res.json(proposals);
+};
 
 module.exports = {
   createProposal,
   getProjectProposals,
   acceptProposal,
+  getMyProposals,
 };

@@ -84,6 +84,12 @@ const deleteProject = async (req, res) => {
     message: "Project deleted successfully",
   });
 };
+const getMyProjects = async (req, res) => {
+  const projects = await Project.find({
+    createdBy: req.user.id,
+  }).populate("createdBy", "name email role");
+  res.json(projects);
+};
 
 module.exports = {
   createProject,
@@ -91,4 +97,5 @@ module.exports = {
   getProjectById,
   updateProject,
   deleteProject,
+  getMyProjects,
 };
