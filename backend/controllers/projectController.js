@@ -90,7 +90,25 @@ const getMyProjects = async (req, res) => {
   }).populate("createdBy", "name email role");
   res.json(projects);
 };
+const completeProject = async (req, res) => {
+  const project = await Project.findById(req.params.id);
+  if (!project) {
+    return res.status(404).json({
+      message: "Project Not Found",
+    });
+  }
+  if (project.createdBy.toString() !== req.user.id) {
+    return res.status(403).json({
+      message: "Only owner can complete project",
+    });
+  }
 
+  project.status = "completed";
+
+  await project.save();
+
+  res.json(project);
+};
 module.exports = {
   createProject,
   getProjects,
@@ -98,4 +116,5 @@ module.exports = {
   updateProject,
   deleteProject,
   getMyProjects,
+  completeProject,
 };
