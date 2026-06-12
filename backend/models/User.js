@@ -20,6 +20,16 @@ const userSchema = mongoose.Schema(
       enum: ["client", "freelancer"],
       default: "freelancer",
     },
+    profileImage: {
+      url: {
+        type: String,
+        default: "",
+      },
+      publicId: {
+        type: String,
+        default: "",
+      },
+    },
   },
   {
     timestamps: true,
