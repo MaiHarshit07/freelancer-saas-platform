@@ -30,6 +30,20 @@ const userSchema = mongoose.Schema(
         default: "",
       },
     },
+    resume: {
+      url: {
+        type: String,
+        default: "",
+      },
+      publicId: {
+        type: String,
+        default: "",
+      },
+      originalName: {
+        type: String,
+        default: "",
+      },
+    },
   },
   {
     timestamps: true,
