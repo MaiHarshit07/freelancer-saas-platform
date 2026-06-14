@@ -86,6 +86,7 @@ MongoDB Database
 - [x] JWT Authentication
 - [x] Project Management APIs
 - [x] freelancer and client chat system
+- [x] resume and pdf upload
 - [ ] Protected Routes
 - [ ] Frontend Integration
 - [ ] Messaging System
