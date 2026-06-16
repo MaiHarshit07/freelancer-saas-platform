@@ -85,11 +85,11 @@ MongoDB Database
 - [x] Password Hashing
 - [x] JWT Authentication
 - [x] Project Management APIs
-- [x] freelancer and client chat system
+- [x] freelancer and client messaging system
 - [x] resume and pdf upload
+- [x] file and image size validation
 - [ ] Protected Routes
 - [ ] Frontend Integration
-- [ ] Messaging System
 - [ ] Payment Integration
 
 ---
