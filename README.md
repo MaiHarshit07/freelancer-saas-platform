@@ -88,7 +88,7 @@ MongoDB Database
 - [x] freelancer and client messaging system
 - [x] resume and pdf upload
 - [x] file and image size validation
-- [ ] Protected Routes
+- [x] Protected Routes
 - [ ] Frontend Integration
 - [ ] Payment Integration
 
