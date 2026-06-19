@@ -6,6 +6,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 const upload = require("../middleware/uploadMiddleware");
 const validateResume = require("../middleware/validateResume");
 const { uploadResume } = require("../controllers/userController");
+const { imageOnly } = require("../middleware/fileFilter");
 
 router.post(
   "/profile-image",
