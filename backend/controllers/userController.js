@@ -1,4 +1,4 @@
-const User = require("../models/user");
+const User = require("../models/User");
 const cloudinary = require("../config/cloudinary");
 
 const updateProfileImage = async (req, res) => {
@@ -12,6 +12,9 @@ const updateProfileImage = async (req, res) => {
       });
     }
 
+    if (user.profileImage && user.profileImage.publicId) {
+      await cloudinary.uploader.destroy(user.profileImage.publicId);
+    }
     user.profileImage = {
       url: req.file.path,
       publicId: req.file.filename,

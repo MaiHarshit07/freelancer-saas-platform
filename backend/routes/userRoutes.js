@@ -3,21 +3,20 @@ const router = express.Router();
 
 const { updateProfileImage } = require("../controllers/userController");
 const authMiddleware = require("../middleware/authMiddleware");
-const upload = require("../middleware/uploadMiddleware");
+const { uploadPdf, uploadImage } = require("../middleware/uploadMiddleware");
 const validateResume = require("../middleware/validateResume");
 const { uploadResume } = require("../controllers/userController");
-const { imageOnly } = require("../middleware/fileFilter");
 
 router.post(
   "/profile-image",
   authMiddleware,
-  upload.single("file"),
+  uploadImage.single("file"),
   updateProfileImage,
 );
 router.post(
   "/resume",
   authMiddleware,
-  upload.single("file"),
+  uploadPdf.single("file"),
   validateResume,
   uploadResume,
 );
