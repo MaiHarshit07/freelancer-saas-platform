@@ -10,6 +10,7 @@ const proposalRoutes = require("./routes/proposalRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const uploadRoutes = require("./routes/uploadRoutes");
 const userRoutes = require("./routes/userRoutes");
+const portfolioRoutes = require("./routes/portfolioRoutes");
 // db connections
 connectDB();
 
@@ -27,6 +28,7 @@ app.use("/api/proposals", proposalRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/portfolio", portfolioRoutes);
 
 // ============================================= //
 app.get("/", (req, res) => {
