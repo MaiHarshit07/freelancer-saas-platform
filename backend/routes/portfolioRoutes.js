@@ -11,6 +11,7 @@ const {
   createPortfolio,
   getFreelancerPortfolio,
   updatePortfolio,
+  deletePortfolio,
 } = require("../controllers/portfolioController");
 
 router.post(
@@ -28,5 +29,11 @@ router.put(
   authorizeRoles("freelancer"),
   uploadImage.single("file"),
   updatePortfolio,
+);
+router.delete(
+  "/:id",
+  authMiddleware,
+  authorizeRoles("freelancer"),
+  deletePortfolio,
 );
 module.exports = router;

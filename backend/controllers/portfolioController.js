@@ -104,9 +104,45 @@ const updatePortfolio = async (req, res) => {
     });
   }
 };
+const deletePortfolio = async (req, res) => {
+  try {
+    const portfolio = await Portfolio.findById(req.params.id);
+
+    if (!portfolio) {
+      return res.status(404).json({
+        success: false,
+        message: "Portfolio not found",
+      });
+    }
+
+    if (portfolio.freelancer.toString() !== req.user.id) {
+      return res.status(403).json({
+        success: false,
+        message: "Not authorized",
+      });
+    }
+
+    if (portfolio.image.publicId) {
+      await cloudinary.uploader.destroy(portfolio.image.publicId);
+    }
+
+    await portfolio.deleteOne();
+
+    res.status(200).json({
+      success: true,
+      message: "Portfolio deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 
 module.exports = {
   createPortfolio,
   getFreelancerPortfolio,
   updatePortfolio,
+  deletePortfolio,
 };
