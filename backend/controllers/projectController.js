@@ -2,12 +2,21 @@ const Project = require("../models/Project");
 
 const createProject = async (req, res) => {
   const { title, description, budget, skills } = req.body;
+  let attachments = [];
 
+  if (req.files && req.files.length > 0) {
+    attachments = req.files.map((file) => ({
+      url: file.secure_url,
+      publicId: file.public_id,
+      originalName: file.originalname,
+    }));
+  }
   const project = await Project.create({
     title,
     description,
     budget,
     skills,
+    attachments,
 
     createdBy: req.user.id,
   });
@@ -109,6 +118,44 @@ const completeProject = async (req, res) => {
 
   res.json(project);
 };
+const getClientDashboard = async (req, res) => {
+  try {
+    const projects = await Project.find({
+      createdBy: req.user.id,
+    });
+
+    const totalProjects = projects.length;
+
+    const openProjects = projects.filter(
+      (project) => project.status === "open",
+    ).length;
+
+    const inProgressProjects = projects.filter(
+      (project) => project.status === "in-progress",
+    ).length;
+
+    const completedProjects = projects.filter(
+      (project) => project.status === "completed",
+    ).length;
+
+    res.status(200).json({
+      success: true,
+
+      totalProjects,
+
+      openProjects,
+
+      inProgressProjects,
+
+      completedProjects,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 module.exports = {
   createProject,
   getProjects,
@@ -117,4 +164,5 @@ module.exports = {
   deleteProject,
   getMyProjects,
   completeProject,
+  getClientDashboard,
 };

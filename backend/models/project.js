@@ -37,6 +37,13 @@ const projectSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    attachments: [
+      {
+        url: String,
+        publicId: String,
+        originalName: String,
+      },
+    ],
   },
 
   {

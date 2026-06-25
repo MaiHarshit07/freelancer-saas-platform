@@ -1,9 +1,9 @@
 const Proposal = require("../models/proposal");
 const Project = require("../models/Project");
+const Notification = require("../models/Notification");
 
 const createProposal = async (req, res) => {
   const { projectId, coverLetter, bidAmount } = req.body;
-
   const project = await Project.findById(projectId);
   // =========================== //
   const existingProposal = await Proposal.findOne({
@@ -30,6 +30,12 @@ const createProposal = async (req, res) => {
   });
 
   res.status(201).json(proposal);
+  // for notification sending to user nd client
+  await Notification.create({
+    recipient: project.createdBy,
+
+    message: `${req.user.name} sent a proposal for your project`,
+  });
 };
 const getProjectProposals = async (req, res) => {
   const proposals = await Proposal.find({
@@ -60,6 +66,12 @@ const acceptProposal = async (req, res) => {
   }
 
   proposal.status = "accepted";
+  // for notification
+  await Notification.create({
+    recipient: proposal.freelancer,
+
+    message: "Your proposal has been accepted",
+  });
   await proposal.save();
 
   await Proposal.updateMany(
@@ -96,10 +108,49 @@ const getMyProposals = async (req, res) => {
 
   res.json(proposals);
 };
+const getFreelancerDashboard = async (req, res) => {
+  try {
+    const proposals = await Proposal.find({
+      freelancer: req.user.id,
+    });
+
+    const totalProposals = proposals.length;
+
+    const acceptedProposals = proposals.filter(
+      (proposal) => proposal.status === "accepted",
+    ).length;
+
+    const pendingProposals = proposals.filter(
+      (proposal) => proposal.status === "pending",
+    ).length;
+
+    const rejectedProposals = proposals.filter(
+      (proposal) => proposal.status === "rejected",
+    ).length;
+
+    res.status(200).json({
+      success: true,
+
+      totalProposals,
+
+      acceptedProposals,
+
+      pendingProposals,
+
+      rejectedProposals,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 
 module.exports = {
   createProposal,
   getProjectProposals,
   acceptProposal,
   getMyProposals,
+  getFreelancerDashboard,
 };
