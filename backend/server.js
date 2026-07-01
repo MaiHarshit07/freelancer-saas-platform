@@ -12,6 +12,7 @@ const uploadRoutes = require("./routes/uploadRoutes");
 const userRoutes = require("./routes/userRoutes");
 const portfolioRoutes = require("./routes/portfolioRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
+
 // db connections
 connectDB();
 
@@ -22,6 +23,7 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRoutes);
+
 // ------->   “All routes inside authRoutes belong to authentication module.” sare routes k aage /api/auth aajayega authRoutes ke
 
 app.use("/api/projects", projectRoutes);

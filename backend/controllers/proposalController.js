@@ -1,11 +1,36 @@
+const mongoose = require("mongoose");
 const Proposal = require("../models/proposal");
-const Project = require("../models/Project");
+const Project = require("../models/project");
 const Notification = require("../models/Notification");
 
+const getProjectIdFromRequest = (req) => {
+  return (
+    req.body?.projectId ||
+    req.body?.project ||
+    req.params?.projectId ||
+    req.params?.id ||
+    req.query?.projectId ||
+    req.query?.project
+  );
+};
+
 const createProposal = async (req, res) => {
-  const { projectId, coverLetter, bidAmount } = req.body;
+  const { coverLetter, bidAmount } = req.body;
+  const projectId = getProjectIdFromRequest(req);
+
+  if (!projectId) {
+    return res.status(400).json({
+      message: "Project ID is required",
+    });
+  }
+
+  if (!mongoose.Types.ObjectId.isValid(projectId)) {
+    return res.status(400).json({
+      message: "Invalid project ID",
+    });
+  }
+
   const project = await Project.findById(projectId);
-  // =========================== //
   const existingProposal = await Proposal.findOne({
     project: projectId,
     freelancer: req.user.id,
@@ -46,7 +71,7 @@ const getProjectProposals = async (req, res) => {
 };
 
 const acceptProposal = async (req, res) => {
-  const proposal = await proposal.findById(req.params.id);
+  const proposal = await Proposal.findById(req.params.id);
 
   if (!proposal) {
     return res.status(404).json({

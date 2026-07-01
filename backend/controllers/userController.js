@@ -1,5 +1,9 @@
 const User = require("../models/User");
 const cloudinary = require("../config/cloudinary");
+const Portfolio = require("../models/Portfolio");
+const Review = require("../models/Review");
+
+// ===========================  //
 
 const updateProfileImage = async (req, res) => {
   try {
@@ -78,7 +82,47 @@ const uploadResume = async (req, res) => {
     });
   }
 };
+const getFreelancerProfile = async (req, res) => {
+  try {
+    const freelancer = await User.findById(req.params.id).select("-password");
+
+    if (!freelancer) {
+      return res.status(404).json({
+        success: false,
+        message: "Freelancer not found",
+      });
+    }
+
+    const portfolio = await Portfolio.find({
+      freelancer: freelancer._id,
+    });
+
+    const reviews = await Review.find({
+      reviewee: freelancer._id,
+    }).populate("reviewer", "name");
+
+    const averageRating =
+      reviews.length > 0
+        ? reviews.reduce((sum, review) => sum + review.rating, 0) /
+          reviews.length
+        : 0;
+
+    res.status(200).json({
+      success: true,
+      freelancer,
+      portfolio,
+      reviews,
+      averageRating,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 module.exports = {
   updateProfileImage,
   uploadResume,
+  getFreelancerProfile,
 };
