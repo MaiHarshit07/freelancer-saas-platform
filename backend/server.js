@@ -12,13 +12,9 @@ const uploadRoutes = require("./routes/uploadRoutes");
 const userRoutes = require("./routes/userRoutes");
 const portfolioRoutes = require("./routes/portfolioRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
-
+const reviewRoutes = require("./routes/reviewRoutes");
 // db connections
 connectDB();
-
-// app.get("/test", (req, res) => {
-//   res.send("Test route working");
-// });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -33,6 +29,7 @@ app.use("/api/upload", uploadRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/portfolio", portfolioRoutes);
 app.use("/api/notifications", notificationRoutes);
+app.use("/api/reviews", reviewRoutes);
 
 // ============================================= //
 app.get("/", (req, res) => {

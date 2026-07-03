@@ -45,10 +45,8 @@ const createReview = async (req, res) => {
 const getFreelancerReviews = async (req, res) => {
   const reviews = await Review.find({
     freelancer: req.params.id,
-  });
-  const reviews = await Review.find({
-    freelancer: req.params.id,
   }).populate("reviewer", "name");
+
   let totalRating = 0;
 
   reviews.forEach((review) => {
@@ -56,6 +54,13 @@ const getFreelancerReviews = async (req, res) => {
   });
 
   const averageRating = reviews.length > 0 ? totalRating / reviews.length : 0;
+
+  res.status(200).json({
+    success: true,
+    count: reviews.length,
+    averageRating,
+    reviews,
+  });
 };
 
 module.exports = {
