@@ -4,14 +4,20 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
+import Navbar from "../components/Navbar";
 
 function AppRoutes(){
-  <BrowserRouter>
-  <Routes>
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Navbar/>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
-  </Routes>
-  </BrowserRouter>
+      </Routes>
+    </BrowserRouter>
+  )
 }
+
+export default AppRoutes;
