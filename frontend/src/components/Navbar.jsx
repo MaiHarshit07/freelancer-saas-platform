@@ -16,6 +16,10 @@ function Navbar() {
       {" | "}
 
       <Link to="/dashboard">Dashboard</Link>
+
+      {" | "}
+
+      <Link to="/bakchodi">Bakchodi Portal</Link>
     </nav>
   );
 }

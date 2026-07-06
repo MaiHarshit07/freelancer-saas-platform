@@ -24,7 +24,11 @@ const registerUser = async (req, res) => {
     role,
   });
 
-  res.status(201).json(user);
+  res.status(201).json({
+    success: true,
+    message: "User registered successfully",
+    user,
+  });
 };
 // this is the function that will run when user hit the Register route
 
@@ -52,6 +56,7 @@ const loginUser = async (req, res) => {
 
   if (!isMatch) {
     return res.status(400).json({
+      success: false,
       message: "Invalid credentials",
     });
   }
@@ -68,15 +73,26 @@ const loginUser = async (req, res) => {
   );
 
   res.json({
-    message: "Login Successful",
+    success: true,
+    message: "Login successful",
     token,
+    user: {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      profileImage: user.profileImage,
+    },
   });
 };
 
 const getProfile = async (req, res) => {
   const user = await User.findById(req.user.id).select("-password -__v");
 
-  res.json(user);
+  res.json({
+    success: true,
+    user,
+  });
 };
 
 const updateProfile = async (req, res) => {
@@ -84,6 +100,7 @@ const updateProfile = async (req, res) => {
 
   if (!user) {
     return res.status(404).json({
+      success: false,
       message: "User not found",
     });
   }
@@ -95,10 +112,16 @@ const updateProfile = async (req, res) => {
   const updatedUser = await user.save();
 
   res.json({
-    _id: updatedUser._id,
-    name: updatedUser.name,
-    email: updatedUser.email,
-    role: updatedUser.role,
+    success: true,
+    message: "Profile updated successfully",
+    user: {
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      role: updatedUser.role,
+      profileImage: updatedUser.profileImage,
+      resume: updatedUser.resume,
+    },
   });
 };
 

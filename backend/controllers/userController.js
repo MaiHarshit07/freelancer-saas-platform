@@ -3,7 +3,7 @@ const cloudinary = require("../config/cloudinary");
 const Portfolio = require("../models/Portfolio");
 const Review = require("../models/Review");
 
-// ===========================  //
+// ============================================
 
 const updateProfileImage = async (req, res) => {
   try {
@@ -16,12 +16,13 @@ const updateProfileImage = async (req, res) => {
       });
     }
 
-    if (user.profileImage && user.profileImage.publicId) {
+    if (user.profileImage?.publicId) {
       await cloudinary.uploader.destroy(user.profileImage.publicId);
     }
+
     user.profileImage = {
-      url: req.file.path,
-      publicId: req.file.filename,
+      url: req.file.secure_url,
+      publicId: req.file.public_id,
     };
 
     await user.save();
@@ -38,6 +39,7 @@ const updateProfileImage = async (req, res) => {
     });
   }
 };
+
 const uploadResume = async (req, res) => {
   try {
     if (!req.file) {
@@ -56,15 +58,15 @@ const uploadResume = async (req, res) => {
       });
     }
 
-    if (user.resume && user.resume.publicId) {
+    if (user.resume?.publicId) {
       await cloudinary.uploader.destroy(user.resume.publicId, {
         resource_type: "raw",
       });
     }
 
     user.resume = {
-      url: req.file.path,
-      publicId: req.file.filename,
+      url: req.file.secure_url,
+      publicId: req.file.public_id,
       originalName: req.file.originalname,
     };
 
@@ -73,7 +75,7 @@ const uploadResume = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Resume uploaded successfully",
-      data: user.resume,
+      resume: user.resume,
     });
   } catch (error) {
     res.status(500).json({
@@ -82,9 +84,12 @@ const uploadResume = async (req, res) => {
     });
   }
 };
+
 const getFreelancerProfile = async (req, res) => {
   try {
-    const freelancer = await User.findById(req.params.id).select("-password");
+    const freelancer = await User.findById(req.params.id).select(
+      "-password -__v",
+    );
 
     if (!freelancer) {
       return res.status(404).json({
@@ -98,7 +103,7 @@ const getFreelancerProfile = async (req, res) => {
     });
 
     const reviews = await Review.find({
-      reviewee: freelancer._id,
+      freelancer: freelancer._id,
     }).populate("reviewer", "name");
 
     const averageRating =
@@ -121,6 +126,7 @@ const getFreelancerProfile = async (req, res) => {
     });
   }
 };
+
 module.exports = {
   updateProfileImage,
   uploadResume,

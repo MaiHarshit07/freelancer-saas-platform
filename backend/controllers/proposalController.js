@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const Proposal = require("../models/proposal");
-const Project = require("../models/project");
+const Proposal = require("../models/Proposal");
+const Project = require("../models/Project");
 const Notification = require("../models/Notification");
 
 const getProjectIdFromRequest = (req) => {
@@ -15,124 +15,185 @@ const getProjectIdFromRequest = (req) => {
 };
 
 const createProposal = async (req, res) => {
-  const { coverLetter, bidAmount } = req.body;
-  const projectId = getProjectIdFromRequest(req);
+  try {
+    const { coverLetter, bidAmount } = req.body;
+    const projectId = getProjectIdFromRequest(req);
 
-  if (!projectId) {
-    return res.status(400).json({
-      message: "Project ID is required",
+    if (!projectId) {
+      return res.status(400).json({
+        success: false,
+        message: "Project ID is required",
+      });
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(projectId)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid project ID",
+      });
+    }
+
+    const project = await Project.findById(projectId);
+
+    if (!project) {
+      return res.status(404).json({
+        success: false,
+        message: "Project not found",
+      });
+    }
+
+    const existingProposal = await Proposal.findOne({
+      project: projectId,
+      freelancer: req.user.id,
+    });
+
+    if (existingProposal) {
+      return res.status(400).json({
+        success: false,
+        message: "You have already applied to this project",
+      });
+    }
+
+    const proposal = await Proposal.create({
+      project: projectId,
+      freelancer: req.user.id,
+      coverLetter,
+      bidAmount,
+    });
+
+    await Notification.create({
+      recipient: project.createdBy,
+      message: `${req.user.name} sent a proposal for your project`,
+    });
+
+    res.status(201).json({
+      success: true,
+      message: "Proposal submitted successfully",
+      proposal,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
     });
   }
-
-  if (!mongoose.Types.ObjectId.isValid(projectId)) {
-    return res.status(400).json({
-      message: "Invalid project ID",
-    });
-  }
-
-  const project = await Project.findById(projectId);
-  const existingProposal = await Proposal.findOne({
-    project: projectId,
-    freelancer: req.user.id,
-  });
-
-  if (existingProposal) {
-    return res.status(400).json({
-      message: "You have already applied to this project",
-    });
-  }
-  if (!project) {
-    return res.status(404).json({
-      message: "Project not found",
-    });
-  }
-
-  const proposal = await Proposal.create({
-    project: projectId,
-    freelancer: req.user.id,
-    coverLetter,
-    bidAmount,
-  });
-
-  res.status(201).json(proposal);
-  // for notification sending to user nd client
-  await Notification.create({
-    recipient: project.createdBy,
-
-    message: `${req.user.name} sent a proposal for your project`,
-  });
 };
-const getProjectProposals = async (req, res) => {
-  const proposals = await Proposal.find({
-    project: req.params.projectId,
-  }).populate("freelancer", "name email role");
 
-  res.json(proposals);
+const getProjectProposals = async (req, res) => {
+  try {
+    const proposals = await Proposal.find({
+      project: req.params.projectId,
+    }).populate("freelancer", "name email role");
+
+    res.status(200).json({
+      success: true,
+      count: proposals.length,
+      data: proposals,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
 };
 
 const acceptProposal = async (req, res) => {
-  const proposal = await Proposal.findById(req.params.id);
+  try {
+    const proposal = await Proposal.findById(req.params.id);
 
-  if (!proposal) {
-    return res.status(404).json({
-      message: "Proposal Not Found",
-    });
-  }
+    if (!proposal) {
+      return res.status(404).json({
+        success: false,
+        message: "Proposal not found",
+      });
+    }
 
-  const alreadyAccepted = await Proposal.findOne({
-    project: proposal.project,
-    status: "accepted",
-  });
+    const project = await Project.findById(proposal.project);
 
-  if (alreadyAccepted) {
-    return res.status(400).json({
-      message: "Project already has an accepted proposal",
-    });
-  }
+    if (!project) {
+      return res.status(404).json({
+        success: false,
+        message: "Project not found",
+      });
+    }
 
-  proposal.status = "accepted";
-  // for notification
-  await Notification.create({
-    recipient: proposal.freelancer,
+    if (project.createdBy.toString() !== req.user.id) {
+      return res.status(403).json({
+        success: false,
+        message: "Only project owner can accept proposals",
+      });
+    }
 
-    message: "Your proposal has been accepted",
-  });
-  await proposal.save();
-
-  await Proposal.updateMany(
-    {
+    const alreadyAccepted = await Proposal.findOne({
       project: proposal.project,
-      _id: { $ne: proposal._id },
-    },
-    {
-      status: "rejected",
-    },
-  );
+      status: "accepted",
+    });
 
-  const project = await Project.findById(proposal.project);
+    if (alreadyAccepted) {
+      return res.status(400).json({
+        success: false,
+        message: "Project already has an accepted proposal",
+      });
+    }
 
-  if (project.createdBy.toString() !== req.user.id) {
-    return res.status(403).json({
-      message: "Only project owner can accept proposals",
+    proposal.status = "accepted";
+    await proposal.save();
+
+    await Proposal.updateMany(
+      {
+        project: proposal.project,
+        _id: { $ne: proposal._id },
+      },
+      {
+        status: "rejected",
+      },
+    );
+
+    project.status = "in-progress";
+    project.assignedFreelancer = proposal.freelancer;
+
+    await project.save();
+
+    await Notification.create({
+      recipient: proposal.freelancer,
+      message: "Your proposal has been accepted",
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Proposal accepted successfully",
+      proposal,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
     });
   }
-  project.status = "in-progress";
-  project.assignedFreelancer = proposal.freelancer;
-  await project.save();
-  res.json({
-    message: "Proposal accepted successfully",
-  });
 };
 
 const getMyProposals = async (req, res) => {
-  const proposals = await Proposal.find({
-    freelancer: req.user.id,
-  })
-    .populate("project", "title budget status")
-    .populate("freelancer", "name email");
+  try {
+    const proposals = await Proposal.find({
+      freelancer: req.user.id,
+    })
+      .populate("project", "title budget status")
+      .populate("freelancer", "name email");
 
-  res.json(proposals);
+    res.status(200).json({
+      success: true,
+      count: proposals.length,
+      data: proposals,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
 };
+
 const getFreelancerDashboard = async (req, res) => {
   try {
     const proposals = await Proposal.find({
@@ -155,14 +216,12 @@ const getFreelancerDashboard = async (req, res) => {
 
     res.status(200).json({
       success: true,
-
-      totalProposals,
-
-      acceptedProposals,
-
-      pendingProposals,
-
-      rejectedProposals,
+      dashboard: {
+        totalProposals,
+        acceptedProposals,
+        pendingProposals,
+        rejectedProposals,
+      },
     });
   } catch (error) {
     res.status(500).json({

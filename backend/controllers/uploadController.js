@@ -10,9 +10,9 @@ const uploadFile = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "File uploaded successfully",
-      data: {
-        url: req.file.path,
-        publicId: req.file.filename,
+      file: {
+        url: req.file.secure_url,
+        publicId: req.file.public_id,
         originalName: req.file.originalname,
         mimeType: req.file.mimetype,
       },

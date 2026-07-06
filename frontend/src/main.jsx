@@ -1,9 +1,14 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
+import React from "react";
+import ReactDOM from "react-dom/client";
 // sabse pehle req yahi aati hai phir app me jati hai then appRoutes then pages and then components 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+import App from "./App";
+
+import { AuthProvider } from "./context/AuthContext";
+
+ReactDOM.createRoot(
+  document.getElementById("root")
+).render(
+  <AuthProvider>
     <App />
-  </StrictMode>,
-)
+  </AuthProvider>
+);

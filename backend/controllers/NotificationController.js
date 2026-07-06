@@ -4,12 +4,11 @@ const getNotifications = async (req, res) => {
   try {
     const notifications = await Notification.find({
       recipient: req.user.id,
-    }).sort({
-      createdAt: -1,
-    });
+    }).sort({ createdAt: -1 });
 
     res.status(200).json({
       success: true,
+      message: "Notifications fetched successfully",
       count: notifications.length,
       data: notifications,
     });
@@ -20,6 +19,7 @@ const getNotifications = async (req, res) => {
     });
   }
 };
+
 const markNotificationAsRead = async (req, res) => {
   try {
     const notification = await Notification.findById(req.params.id);
@@ -39,12 +39,12 @@ const markNotificationAsRead = async (req, res) => {
     }
 
     notification.read = true;
-
     await notification.save();
 
     res.status(200).json({
       success: true,
       message: "Notification marked as read",
+      notification,
     });
   } catch (error) {
     res.status(500).json({

@@ -1,4 +1,3 @@
-const { get } = require("mongoose");
 const Portfolio = require("../models/Portfolio");
 const cloudinary = require("../config/cloudinary");
 
@@ -9,26 +8,25 @@ const createPortfolio = async (req, res) => {
     if (!req.file) {
       return res.status(400).json({
         success: false,
-        message: "Portfolio image required",
+        message: "Portfolio image is required",
       });
     }
-    console.log(req.file);
+
     const portfolio = await Portfolio.create({
       freelancer: req.user.id,
-
       title,
       description,
       projectLink,
-
       image: {
         url: req.file.secure_url,
         publicId: req.file.public_id,
       },
     });
-    // we have used secure_url because the app request has the secure_url for the cloudinary
+
     res.status(201).json({
       success: true,
-      data: portfolio,
+      message: "Portfolio created successfully",
+      portfolio,
     });
   } catch (error) {
     res.status(500).json({
@@ -46,6 +44,7 @@ const getFreelancerPortfolio = async (req, res) => {
 
     res.status(200).json({
       success: true,
+      message: "Portfolio fetched successfully",
       count: portfolios.length,
       data: portfolios,
     });
@@ -56,6 +55,7 @@ const getFreelancerPortfolio = async (req, res) => {
     });
   }
 };
+
 const updatePortfolio = async (req, res) => {
   try {
     const portfolio = await Portfolio.findById(req.params.id);
@@ -75,9 +75,7 @@ const updatePortfolio = async (req, res) => {
     }
 
     portfolio.title = req.body.title || portfolio.title;
-
     portfolio.description = req.body.description || portfolio.description;
-
     portfolio.projectLink = req.body.projectLink || portfolio.projectLink;
 
     if (req.file) {
@@ -95,7 +93,8 @@ const updatePortfolio = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      data: portfolio,
+      message: "Portfolio updated successfully",
+      portfolio,
     });
   } catch (error) {
     res.status(500).json({
@@ -104,6 +103,7 @@ const updatePortfolio = async (req, res) => {
     });
   }
 };
+
 const deletePortfolio = async (req, res) => {
   try {
     const portfolio = await Portfolio.findById(req.params.id);
