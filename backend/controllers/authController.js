@@ -13,7 +13,9 @@ const registerUser = async (req, res) => {
     });
   }
 
-  const salt = await bcrypt.genSalt(10); // salt matlab some amount of extra characters added taki for even two same pass we could get different hashed values to hackers ko mushkil hogi
+  const salt = await bcrypt.genSalt(10);
+  // salt means some amount of extra characters added
+  // even for two same passwords we could get different hashed values
 
   const hashedPassword = await bcrypt.hash(password, salt);
 

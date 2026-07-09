@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-// this is the database schema for user signup/login
+//The database schema for user signup/login
 const userSchema = mongoose.Schema(
   {
     name: {
