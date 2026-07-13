@@ -1,1 +1,28 @@
 @import "tailwindcss";
+
+:root {
+  /* Backgrounds */
+  --bg-primary: #07140E;
+  --bg-secondary: #102018;
+  --bg-card: #16281F;
+
+  /* Text */
+  --text-primary: #F5F7F5;
+  --text-secondary: #C7D2CC;
+
+  /* Accent */
+  --gold: #D4AF37;
+  --gold-hover: #E6C766;
+
+  --emerald: #2E8B57;
+  --emerald-hover: #3FA56A;
+
+  /* Border */
+  --border: #22362B;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: Inter, sans-serif;
+}
