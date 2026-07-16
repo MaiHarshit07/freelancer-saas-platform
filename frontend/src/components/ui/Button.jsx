@@ -12,17 +12,17 @@ function Button({
       disabled={disabled}
       className={`
         w-full
-        rounded-lg
-        bg-[#D4AF37]
+        rounded-xl
+        bg-emerald-600
         px-5
         py-3
-        text-sm
         font-semibold
-        text-[#07140E]
+        text-white
         transition-all
-        duration-200
-        hover:bg-[#E6C766]
-        active:scale-[0.98]
+        duration-300
+        hover:bg-emerald-500
+        hover:shadow-lg
+        hover:shadow-emerald-500/20
         disabled:cursor-not-allowed
         disabled:opacity-50
         ${className}

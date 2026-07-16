@@ -1,57 +1,66 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { getProfile } from "../services/authService";
+import { createContext, useContext, useState } from "react";
+import { loginUser } from "../services/authService";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
+
   const [user, setUser] = useState(null);
 
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(
+    localStorage.getItem("token") || null
+  );
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  const login = (userData, jwt) => {
-    setUser(userData);
-    setToken(jwt);
-    localStorage.setItem("token", jwt);
-  };
+  async function login(formData) {
+    try {
 
-  const logout = () => {
-    setUser(null);
-    setToken(null);
+      setLoading(true);
+
+      const data = await loginUser(formData);
+
+      localStorage.setItem("token", data.token);
+
+      setToken(data.token);
+
+      setUser(data.user);
+
+      return {
+        success: true,
+      };
+
+    } catch (error) {
+
+      return {
+        success: false,
+        message:
+          error.response?.data?.message || "Login failed",
+      };
+
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function logout() {
+
     localStorage.removeItem("token");
-  };
 
-  useEffect(() => {
-    const loadUser = async () => {
-      if (!token) {
-        setLoading(false);
-        return;
-      }
+    setUser(null);
 
-      try {
-        const res = await getProfile();
+    setToken(null);
 
-        setUser(res.data);
-      } catch (error) {
-        logout();
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadUser();
-  }, [token]);
+  }
 
   return (
     <AuthContext.Provider
       value={{
         user,
         token,
+        loading,
         login,
         logout,
-        loading,
-        isAuthenticated: !!user,
       }}
     >
       {children}
@@ -59,4 +68,6 @@ export function AuthProvider({ children }) {
   );
 }
 
-export const useAuth = () => useContext(AuthContext);
+export function useAuth() {
+  return useContext(AuthContext);
+}

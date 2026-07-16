@@ -1,61 +1,50 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
-import Button from "../ui/Button";
 import Input from "../ui/Input";
+import Button from "../ui/Button";
 
-import { loginUser } from "../../services/authService";
+// ================================ //
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 function LoginForm() {
-  const { login } = useAuth();
-
+  const navigate = useNavigate();
+  const { login, loading } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
+  function handleChange(e) {
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [e.target.name]: e.target.value,
     }));
-  };
+  }
 
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
 
-    try {
-      const res = await loginUser(formData);
+    const result = await login(formData);
 
-      login(res.data.user, res.data.token);
-
-      console.log("Logged In");
-    } catch (err) {
-      console.error(
-        "Login Failed:",
-        err.response?.data || err.message || err
-      );
+    if (result.success) {
+      navigate("/dashboard");
+    } else {
+      alert(result.message);
     }
-  };
+  }
 
   return (
-    <div className="w-full max-w-md rounded-2xl border border-[#22362B] bg-[#16281F] p-8 shadow-2xl">
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-[#F5F7F5]">
-          Welcome Back
-        </h1>
+    <div className="w-full max-w-md rounded-2xl border border-[#22362B] bg-[#102018] p-8 shadow-xl">
+      <h1 className="mb-2 text-3xl font-bold text-[#F5F7F5]">Welcome Back</h1>
 
-        <p className="mt-3 text-sm text-[#C7D2CC]">
-          Sign in to continue managing your freelance projects.
-        </p>
-      </div>
+      <p className="mb-8 text-[#C7D2CC]">
+        Login to continue your freelance journey.
+      </p>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <Input
-          label="Email Address"
+          label="Email"
           type="email"
           name="email"
           placeholder="Enter your email"
@@ -72,37 +61,10 @@ function LoginForm() {
           onChange={handleChange}
         />
 
-        <div className="flex justify-end">
-          <button
-            type="button"
-            className="text-sm text-[#D4AF37] transition hover:text-[#E6C766]"
-          >
-            Forgot Password?
-          </button>
-        </div>
-
-        <Button type="submit">
-          Sign In
+        <Button type="submit" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
         </Button>
       </form>
-
-      <div className="my-8 flex items-center">
-        <div className="h-px flex-1 bg-[#22362B]" />
-        <span className="px-4 text-sm text-[#C7D2CC]">
-          OR
-        </span>
-        <div className="h-px flex-1 bg-[#22362B]" />
-      </div>
-
-      <p className="text-center text-sm text-[#C7D2CC]">
-        Don't have an account?{" "}
-        <Link
-          to="/register"
-          className="font-semibold text-[#D4AF37] transition hover:text-[#E6C766]"
-        >
-          Create Account
-        </Link>
-      </p>
     </div>
   );
 }

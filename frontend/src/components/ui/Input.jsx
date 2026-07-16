@@ -1,53 +1,40 @@
 function Input({
   label,
   type = "text",
-  name,
+  placeholder,
   value,
   onChange,
-  placeholder,
-  required = false,
-  disabled = false,
+  name,
 }) {
   return (
     <div className="space-y-2">
-      {label && (
-        <label
-          htmlFor={name}
-          className="block text-sm font-medium text-[#F5F7F5]"
-        >
-          {label}
-        </label>
-      )}
+
+      <label className="text-sm font-medium text-gray-300">
+        {label}
+      </label>
 
       <input
-        id={name}
         type={type}
         name={name}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        required={required}
-        disabled={disabled}
         className="
           w-full
-          rounded-lg
+          rounded-xl
           border
-          border-[#22362B]
-          bg-[#102018]
+          border-emerald-900
+          bg-[#13251c]
           px-4
           py-3
-          text-[#F5F7F5]
-          placeholder:text-[#6B7C73]
+          text-white
+          placeholder:text-gray-500
           outline-none
-          transition-all
-          duration-200
-          focus:border-[#D4AF37]
-          focus:ring-2
-          focus:ring-[#D4AF37]/20
-          disabled:cursor-not-allowed
-          disabled:opacity-50
+          transition
+          focus:border-emerald-500
         "
       />
+
     </div>
   );
 }

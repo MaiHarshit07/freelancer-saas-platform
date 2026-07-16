@@ -2,9 +2,9 @@ import LoginForm from "../components/auth/LoginForm";
 
 function Login() {
   return (
-    <main className="min-h-screen bg-[#07140E] flex items-center justify-center px-4">
+    <div className="flex min-h-screen items-center justify-center bg-[#07140E] px-6">
       <LoginForm />
-    </main>
+    </div>
   );
 }
 

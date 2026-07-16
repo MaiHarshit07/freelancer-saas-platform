@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-[#22362B] bg-[#07140E]/90 backdrop-blur-xl">
+
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-8">
 
-        {/* Logo */}
         <Link
           to="/"
           className="text-2xl font-bold tracking-tight text-[#D4AF37] transition hover:text-[#E6C766]"
@@ -13,7 +13,6 @@ function Navbar() {
           Freelancer Platform
         </Link>
 
-        {/* Navigation */}
         <div className="hidden items-center gap-10 md:flex">
 
           <Link
@@ -46,8 +45,6 @@ function Navbar() {
 
         </div>
 
-        {/* Buttons */}
-
         <div className="flex items-center gap-4">
 
           <Link
@@ -67,6 +64,7 @@ function Navbar() {
         </div>
 
       </nav>
+
     </header>
   );
 }
