@@ -1,27 +1,42 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Navbar from "../components/layout/Navbar";
+import PublicLayout from "../components/layout/PublicLayout";
 import DashboardLayout from "../components/layout/DashboardLayout";
-
-import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
-import Dashboard from "../pages/Dashboard";
-
-// ==========
 import ProtectedRoute from "../components/auth/ProtectedRoute";
+
+import Home from "../pages/public/Home";
+import Login from "../pages/public/Login";
+import Register from "../pages/public/Register";
+import Dashboard from "../pages/dashboard/Dashboard";
 
 function AppRoutes() {
   return (
     <BrowserRouter>
-      <Navbar />
 
       <Routes>
-        <Route path="/" element={<Home />} />
 
-        <Route path="/login" element={<Login />} />
+        {/* Public Routes */}
 
-        <Route path="/register" element={<Register />} />
+        <Route element={<PublicLayout />}>
+
+          <Route
+            path="/"
+            element={<Home />}
+          />
+
+          <Route
+            path="/login"
+            element={<Login />}
+          />
+
+          <Route
+            path="/register"
+            element={<Register />}
+          />
+
+        </Route>
+
+        {/* Protected Routes */}
 
         <Route
           element={
@@ -30,9 +45,16 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         >
-          <Route path="/dashboard" element={<Dashboard />} />
+
+          <Route
+            path="/dashboard"
+            element={<Dashboard />}
+          />
+
         </Route>
+
       </Routes>
+
     </BrowserRouter>
   );
 }

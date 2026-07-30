@@ -2,7 +2,7 @@ import { FaBell, FaUserCircle } from "react-icons/fa";
 
 function Topbar() {
   return (
-    <header className="flex h-20 items-center justify-between border-b border-[#22362B] bg-[#07140E] px-8">
+    <header className="flex h-20 items-center justify-between border-b border-[#22362B] bg-[#07140E] px-8  backdrop-blur-xl">
 
       <div>
         <h1 className="text-2xl font-semibold text-[#F5F7F5]">
