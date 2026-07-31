@@ -1,110 +1,287 @@
-A full-stack MERN SaaS platform that connects freelancers and clients in a modern scalable ecosystem.
+# 🚀 Freelancer SaaS Platform
 
-## Features
+A modern Multi-Tenant Freelancer SaaS Platform built using the MERN Stack.
 
-- User Authentication (JWT)
-- Role-Based Access (Client / Freelancer)
-- Secure Password Hashing with bcrypt
-- Login & Registration APIs
-- MongoDB Atlas Integration
-- REST API Architecture
-- MVC Backend Structure
-- Real-time Messaging (Upcoming)
-- Project & Gig Management (Upcoming)
-- Dashboard Analytics (Upcoming)
+The platform connects **Clients** and **Freelancers** through project posting, proposal management, messaging, portfolio showcasing, reviews, and a modern dashboard experience.
+
+> Currently under active development.
 
 ---
 
-## Tech Stack
+# ✨ Features
 
-### Frontend
+## Authentication
 
-- React.js
-- Tailwind CSS
-- Axios
+- JWT Authentication
+- Secure Password Hashing (bcrypt)
+- Protected Routes
+- Role Based Access (Client / Freelancer)
+
+---
+
+## Client Features
+
+- Create Projects
+- Edit Projects
+- Delete Projects
+- Manage Projects
+- Accept / Reject Proposals
+- Client Dashboard
+- Project Analytics
+
+---
+
+## Freelancer Features
+
+- Browse Projects
+- Submit Proposals
+- Portfolio Management
+- Resume Upload
+- Freelancer Dashboard
+- Reviews & Ratings
+
+---
+
+## File Uploads
+
+- Profile Image Upload
+- Resume Upload
+- Cloudinary Integration
+
+---
+
+## Dashboard
+
+- Role Based Dashboard
+- Modern Sidebar Navigation
+- Sticky Topbar
+- Responsive Dashboard Layout
+- Statistics Cards
+- Recent Projects
+
+---
+
+## Reviews
+
+- Client Review System
+- Freelancer Ratings
+- Average Rating Calculation
+
+---
+
+## Notifications
+
+- Proposal Notifications
+- Acceptance Notifications
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+- React 19
+- Vite
 - React Router
+- Context API
+- Axios
+- Tailwind CSS v4
+- React Icons
 
-### Backend
+---
+
+## Backend
 
 - Node.js
 - Express.js
 - MongoDB
 - Mongoose
-- JWT Authentication
+- JWT
 - bcryptjs
+- Multer
+- Cloudinary
 
 ---
 
-## Backend Architecture
+# 📂 Project Structure
 
-```bash
-backend/
+```
+frontend/
+
+src/
+│
+├── components/
+│   ├── auth/
+│   ├── dashboard/
+│   ├── layout/
+│   └── ui/
 │
 ├── config/
-│   └── db.js
 │
-├── controllers/
-│   └── authController.js
+├── context/
 │
-├── models/
-│   └── User.js
+├── pages/
+│   ├── public/
+│   ├── dashboard/
+│   └── projects/
 │
 ├── routes/
-│   └── authRoutes.js
 │
-├── .env
-├── package.json
-└── server.js
+├── services/
+│
+└── App.jsx
+
+backend/
+
+controllers/
+models/
+routes/
+middleware/
+config/
+utils/
 ```
 
 ---
 
-## Authentication Flow
+# 📸 Current UI
 
-```text
-Client Request
-      ↓
-Routes
-      ↓
-Controllers
-      ↓
-JWT Authentication
-      ↓
-MongoDB Database
+## Public Pages
+
+- Home
+- Login
+- Register
+
+## Dashboard
+
+- Sidebar Navigation
+- Sticky Topbar
+- Dashboard Cards
+- Recent Projects
+
+---
+
+# 📅 Current Development Progress
+
+## ✅ Backend
+
+- Authentication
+- User Management
+- Projects API
+- Proposal System
+- Portfolio API
+- Reviews API
+- Notifications API
+- File Uploads
+
+---
+
+## 🚧 Frontend
+
+### Completed
+
+- Project Architecture
+- Routing
+- Authentication Context
+- Protected Routes
+- Public Layout
+- Dashboard Layout
+- Sidebar
+- Topbar
+- Dashboard UI
+- Reusable Components
+- Dashboard API Integration (In Progress)
+
+### Upcoming
+
+- Project Management
+- Proposal Management
+- Portfolio
+- Messaging
+- Notifications
+- Settings
+- Landing Page
+- Responsive Optimization
+
+---
+
+# 🎨 Design
+
+Inspired by modern SaaS products like
+
+- Linear
+- Vercel
+- GitHub
+- Notion
+
+Theme
+
+- 🌿 Dark Green
+- ✨ Gold Accent
+- Glassmorphism
+- Minimal UI
+- Premium Dashboard Experience
+
+---
+
+# 🚀 Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/your-username/freelancer-saas-platform.git
+```
+
+Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Backend
+
+```bash
+cd backend
+npm install
+npm run dev
 ```
 
 ---
 
-## Current Progress
+# 📌 Roadmap
 
-- [x] Express Server Setup
-- [x] MongoDB Connection
-- [x] User Schema
-- [x] Register API
-- [x] Login API
-- [x] Password Hashing
-- [x] JWT Authentication
-- [x] Project Management APIs
-- [x] freelancer and client messaging system
-- [x] resume and pdf upload
-- [x] file and image size validation
-- [x] Protected Routes
-- [ ] Frontend Integration
-- [ ] Payment Integration
-
----
-
-## Future Goals
-
-- Real-time chat
-- AI-powered recommendations
-- Freelancer ranking system
-- Stripe payment gateway
-- Notification system
-- Admin dashboard
+- [x] Authentication
+- [x] Dashboard Layout
+- [x] Project Backend
+- [x] Proposal Backend
+- [x] Reviews Backend
+- [x] Portfolio Backend
+- [ ] Complete Project Module
+- [ ] Messaging
+- [ ] Notifications UI
+- [ ] Portfolio UI
+- [ ] Settings
+- [ ] Landing Page
+- [ ] Admin Panel
+- [ ] Responsive Design
 
 ---
 
-## Author
+# 🤝 Contributing
 
-Harshit Pandey
+Contributions, suggestions, and feedback are welcome.
+
+---
+
+# 📜 License
+
+MIT License
+
+---
+
+## 👨‍💻 Author
+
+**Harshit Pandey**
+
+Building in public while documenting the complete journey of creating a production-ready Freelancer SaaS Platform from scratch.

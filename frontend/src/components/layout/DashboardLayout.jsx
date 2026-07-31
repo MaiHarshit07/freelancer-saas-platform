@@ -5,27 +5,23 @@ import Topbar from "./Topbar";
 
 function DashboardLayout() {
   return (
-    <div className="h-screen bg-[#07140E] flex overflow-hidden">
+    <div className="flex h-screen overflow-hidden bg-[#07140E]">
 
       {/* Sidebar */}
-
-      <aside className="w-72 shrink-0 border-r border-[#22362B]">
+     <aside className="hidden lg:flex  flex-shrink-0 border-r border-[#22362B]">
         <Sidebar />
       </aside>
 
-      {/* Main */}
-
+      {/* Main Section */}
       <div className="flex flex-1 flex-col">
 
-        {/* Topbar */}
-
+        {/* Sticky Topbar */}
         <header className="sticky top-0 z-40">
           <Topbar />
         </header>
 
-        {/* Scroll Area */}
-
-        <main className="flex-1 overflow-y-auto p-8">
+        {/* Scrollable Content */}
+        <main className="flex-1 overflow-y-auto px-8 py-6">
           <Outlet />
         </main>
 

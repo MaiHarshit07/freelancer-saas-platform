@@ -5,7 +5,8 @@ import StatCard from "../../../components/dashboard/StatCard";
 import RecentProjectCard from "../../../components/dashboard/RecentProjectCard";
 import { getClientDashboard } from "../../../services/dashboardService";
 import { getMyProjects } from "../../../services/projectService";
-
+import PageHeader from "../../../components/dashboard/PageHeader";
+import Button from "../../../components/ui/Button";
 function ClientDashboard() {
   const [stats, setStats] = useState(null);
   const [projects, setProjects] = useState([]);
@@ -31,11 +32,15 @@ function ClientDashboard() {
       {/* Heading */}
 
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-white">Client Dashboard</h1>
-
-        <p className="mt-2 text-[#C7D2CC]">
-          Manage your projects and freelancers.
-        </p>
+       <PageHeader
+  title="Dashboard"
+  subtitle="Manage your projects and freelancers."
+  action={
+    <Button>
+      + New Project
+    </Button>
+  }
+/>
       </div>
 
       {/* Stats */}
