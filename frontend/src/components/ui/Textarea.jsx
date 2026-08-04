@@ -1,10 +1,10 @@
-function Input({
+function Textarea({
   label,
-  type = "text",
   placeholder,
   value,
   onChange,
   name,
+  rows = 5,
 }) {
   return (
     <div className="space-y-2">
@@ -13,14 +13,15 @@ function Input({
         {label}
       </label>
 
-      <input
-        type={type}
+      <textarea
+        rows={rows}
         name={name}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
         className="
           w-full
+          resize-none
           rounded-xl
           border
           border-[#22362B]
@@ -39,4 +40,4 @@ function Input({
   );
 }
 
-export default Input;
+export default Textarea;
