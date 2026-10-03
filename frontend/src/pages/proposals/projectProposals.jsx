@@ -177,8 +177,12 @@ function ProjectProposals() {
 
                       <div>
                         <h2 className="font-semibold text-white">
-                          {proposal.freelancer?.name ||
-                            "Freelancer"}
+                          <Link
+                            to={`/freelancers/${proposal.freelancer?._id}`}
+                            className="transition hover:text-[#D4AF37]"
+                          >
+                            {proposal.freelancer?.name || "Freelancer"}
+                          </Link>
                         </h2>
 
                         <p className="text-sm text-[#76837B]">

@@ -4,20 +4,26 @@ import {
   FaArrowLeft,
   FaEdit,
   FaComments,
+  FaCheckCircle,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
 
 import PageHeader from "../../components/dashboard/PageHeader";
+import ConfirmModal from "../../components/ui/ConfirmModal";
 import ProjectInfoCard from "../../components/projects/ProjectInfoCard";
 import ProjectMetaCard from "../../components/projects/ProjectMetaCard";
+import { useAuth } from "../../context/AuthContext";
 
-import { getProjectById } from "../../services/projectService";
+import { completeProject, getProjectById } from "../../services/projectService";
 
 function ProjectDetails() {
   const { id } = useParams();
+  const { user } = useAuth();
 
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [completionModalOpen, setCompletionModalOpen] = useState(false);
+  const [completionLoading, setCompletionLoading] = useState(false);
 
   useEffect(() => {
     fetchProject();
@@ -39,6 +45,25 @@ function ProjectDetails() {
       );
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleCompleteProject = async () => {
+    try {
+      setCompletionLoading(true);
+      await completeProject(id);
+      setProject((currentProject) => ({
+        ...currentProject,
+        status: "completed",
+      }));
+      setCompletionModalOpen(false);
+      toast.success("Project marked as completed.");
+    } catch (error) {
+      toast.error(
+        error?.response?.data?.message || "Failed to complete project.",
+      );
+    } finally {
+      setCompletionLoading(false);
     }
   };
 
@@ -64,6 +89,12 @@ function ProjectDetails() {
 
   const hasAssignedFreelancer =
     Boolean(project.assignedFreelancer);
+  const projectOwnerId =
+    typeof project.createdBy === "object"
+      ? project.createdBy?._id
+      : project.createdBy;
+  const isProjectOwner =
+    user?.role === "client" && String(projectOwnerId) === String(user?._id);
 
   return (
     <div className="space-y-8">
@@ -104,7 +135,7 @@ function ProjectDetails() {
 
           {/* Messaging */}
 
-          {hasAssignedFreelancer && (
+          {hasAssignedFreelancer && project.status === "in-progress" && (
             <Link
               to={`/projects/${project._id}/messages`}
               className="
@@ -128,6 +159,29 @@ function ProjectDetails() {
               Messages
             </Link>
           )}
+
+          {isProjectOwner && project.status === "in-progress" && (
+            <button
+              type="button"
+              onClick={() => setCompletionModalOpen(true)}
+              className="inline-flex items-center gap-2 rounded-xl border border-emerald-700/60 bg-emerald-900/20 px-5 py-3 font-medium text-emerald-300 transition hover:bg-emerald-900/40"
+            >
+              <FaCheckCircle />
+              Mark Completed
+            </button>
+          )}
+
+          {isProjectOwner &&
+            project.status === "completed" &&
+            hasAssignedFreelancer && (
+              <Link
+                to={`/reviews?projectId=${project._id}`}
+                className="inline-flex items-center gap-2 rounded-xl bg-[#D4AF37] px-5 py-3 font-medium text-[#07140E] transition hover:brightness-110"
+              >
+                <FaCheckCircle />
+                Review Freelancer
+              </Link>
+            )}
 
           {/* Edit */}
 
@@ -277,8 +331,12 @@ function ProjectDetails() {
 
                 <div>
                   <p className="font-medium text-white">
-                    {project.assignedFreelancer.name ||
-                      "Freelancer"}
+                    <Link
+                      to={`/freelancers/${project.assignedFreelancer._id}`}
+                      className="transition hover:text-[#D4AF37]"
+                    >
+                      {project.assignedFreelancer.name || "Freelancer"}
+                    </Link>
                   </p>
 
                   {project.assignedFreelancer.email && (
@@ -291,9 +349,10 @@ function ProjectDetails() {
 
                 {/* Message shortcut */}
 
-                <Link
-                  to={`/projects/${project._id}/messages`}
-                  className="
+                {project.status === "in-progress" && (
+                  <Link
+                    to={`/projects/${project._id}/messages`}
+                    className="
                     inline-flex
                     items-center
                     gap-2
@@ -305,12 +364,13 @@ function ProjectDetails() {
                     text-[#D4AF37]
                     transition
                     hover:bg-[#22362B]
-                  "
-                >
-                  <FaComments />
+                    "
+                  >
+                    <FaComments />
 
-                  Message
-                </Link>
+                    Message
+                  </Link>
+                )}
 
               </div>
             ) : (
@@ -340,6 +400,18 @@ function ProjectDetails() {
         <ProjectMetaCard project={project} />
 
       </div>
+
+      <ConfirmModal
+        isOpen={completionModalOpen}
+        title="Complete this project?"
+        message="This will mark the project as completed and notify the assigned freelancer. You can then leave a review."
+        confirmText="Complete Project"
+        loadingText="Completing..."
+        confirmClassName="bg-[#D4AF37] text-[#07140E] hover:bg-[#e3c44d]"
+        isLoading={completionLoading}
+        onConfirm={handleCompleteProject}
+        onCancel={() => setCompletionModalOpen(false)}
+      />
 
     </div>
   );

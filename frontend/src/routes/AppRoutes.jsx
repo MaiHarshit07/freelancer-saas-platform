@@ -7,6 +7,7 @@ import ProtectedRoute from "../components/auth/ProtectedRoute";
 import Home from "../pages/public/Home";
 import Login from "../pages/public/Login";
 import Register from "../pages/public/Register";
+import FreelancerProfile from "../pages/public/FreelancerProfile";
 
 import Dashboard from "../pages/dashboard/Dashboard";
 
@@ -24,6 +25,8 @@ import ProjectMessages from "../pages/messages/ProjectMessages";
 import Messages from "../pages/messages/Messages";
 import Notifications from "../pages/notifications/Notifications";
 import Settings from "../pages/settings/Settings";
+import Reviews from "../pages/reviews/Reviews";
+import Portfolio from "../pages/portfolio/Portfolio";
 
 
 function AppRoutes() {
@@ -48,6 +51,11 @@ function AppRoutes() {
           <Route
             path="/register"
             element={<Register />}
+          />
+
+          <Route
+            path="/freelancers/:id"
+            element={<FreelancerProfile />}
           />
 
         </Route>
@@ -135,6 +143,16 @@ function AppRoutes() {
           <Route
             path="/settings"
             element={<Settings />}
+          />
+
+          <Route
+            path="/reviews"
+            element={<Reviews />}
+          />
+
+          <Route
+            path="/portfolio"
+            element={<Portfolio />}
           />
 
         </Route>

@@ -136,13 +136,22 @@ const getFreelancerProfile = async (req, res) => {
       });
     }
 
+    if (freelancer.role !== "freelancer") {
+      return res.status(404).json({
+        success: false,
+        message: "Freelancer not found",
+      });
+    }
+
     const portfolio = await Portfolio.find({
       freelancer: freelancer._id,
     });
 
     const reviews = await Review.find({
       freelancer: freelancer._id,
-    }).populate("reviewer", "name");
+    })
+      .populate("reviewer", "name profileImage")
+      .populate("project", "title");
 
     const averageRating =
       reviews.length > 0
@@ -156,6 +165,7 @@ const getFreelancerProfile = async (req, res) => {
       portfolio,
       reviews,
       averageRating,
+      reviewCount: reviews.length,
     });
   } catch (error) {
     res.status(500).json({

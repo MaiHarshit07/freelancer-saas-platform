@@ -27,6 +27,16 @@ const portfolioSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+
+    githubUrl: {
+      type: String,
+      default: "",
+    },
+
+    technologies: {
+      type: [String],
+      default: [],
+    },
   },
   {
     timestamps: true,

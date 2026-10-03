@@ -1,12 +1,15 @@
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function RecentProjectCard({
+  projectId,
   title,
   budget,
   status,
 }) {
   return (
-    <div
+    <Link
+      to={`/projects/${projectId}`}
       className="
         flex
         items-center
@@ -34,16 +37,15 @@ function RecentProjectCard({
       <div className="flex items-center gap-5">
 
         <span
-          className="
-            rounded-full
-            bg-[#1A3023]
-            px-4
-            py-2
-            text-sm
-            text-[#D4AF37]
-          "
+          className={`rounded-full px-4 py-2 text-sm capitalize ${
+            status === "completed"
+              ? "bg-blue-900/30 text-blue-300"
+              : status === "in-progress"
+                ? "bg-yellow-900/30 text-yellow-300"
+                : "bg-[#1A3023] text-[#D4AF37]"
+          }`}
         >
-          {status}
+          {status?.replace("-", " ")}
         </span>
 
         <FaArrowRight
@@ -51,7 +53,7 @@ function RecentProjectCard({
         />
 
       </div>
-    </div>
+    </Link>
   );
 }
 

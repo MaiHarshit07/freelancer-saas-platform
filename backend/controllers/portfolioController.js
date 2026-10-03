@@ -1,9 +1,31 @@
 const Portfolio = require("../models/Portfolio");
 const cloudinary = require("../config/cloudinary");
 
+const parseTechnologies = (value) => {
+  if (Array.isArray(value)) {
+    return value.map((item) => String(item).trim()).filter(Boolean);
+  }
+
+  if (typeof value === "string") {
+    return value
+      .split(",")
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
+
+  return [];
+};
+
 const createPortfolio = async (req, res) => {
   try {
-    const { title, description, projectLink } = req.body;
+    const { title, description, projectLink, githubUrl } = req.body;
+
+    if (!title?.trim() || !description?.trim()) {
+      return res.status(400).json({
+        success: false,
+        message: "Title and description are required",
+      });
+    }
 
     if (!req.file) {
       return res.status(400).json({
@@ -14,9 +36,11 @@ const createPortfolio = async (req, res) => {
 
     const portfolio = await Portfolio.create({
       freelancer: req.user.id,
-      title,
-      description,
-      projectLink,
+      title: title.trim(),
+      description: description.trim(),
+      projectLink: projectLink || "",
+      githubUrl: githubUrl || "",
+      technologies: parseTechnologies(req.body.technologies),
       image: {
         url: req.file.secure_url,
         publicId: req.file.public_id,
@@ -29,6 +53,7 @@ const createPortfolio = async (req, res) => {
       portfolio,
     });
   } catch (error) {
+    console.error("Create portfolio error:", error);
     res.status(500).json({
       success: false,
       message: error.message,
@@ -74,12 +99,28 @@ const updatePortfolio = async (req, res) => {
       });
     }
 
-    portfolio.title = req.body.title || portfolio.title;
-    portfolio.description = req.body.description || portfolio.description;
-    portfolio.projectLink = req.body.projectLink || portfolio.projectLink;
+    if (req.body.title) {
+      portfolio.title = req.body.title.trim();
+    }
+
+    if (req.body.description) {
+      portfolio.description = req.body.description.trim();
+    }
+
+    if (req.body.projectLink !== undefined) {
+      portfolio.projectLink = req.body.projectLink || "";
+    }
+
+    if (req.body.githubUrl !== undefined) {
+      portfolio.githubUrl = req.body.githubUrl || "";
+    }
+
+    if (req.body.technologies !== undefined) {
+      portfolio.technologies = parseTechnologies(req.body.technologies);
+    }
 
     if (req.file) {
-      if (portfolio.image.publicId) {
+      if (portfolio.image && portfolio.image.publicId) {
         await cloudinary.uploader.destroy(portfolio.image.publicId);
       }
 

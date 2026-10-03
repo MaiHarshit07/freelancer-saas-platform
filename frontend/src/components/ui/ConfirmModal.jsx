@@ -4,6 +4,9 @@ export default function ConfirmModal({
   message,
   confirmText = "Delete",
   cancelText = "Cancel",
+  isLoading = false,
+  loadingText = "Working...",
+  confirmClassName = "bg-red-600 text-white hover:bg-red-700",
   onConfirm,
   onCancel,
 }) {
@@ -47,6 +50,7 @@ export default function ConfirmModal({
 
           <button
             onClick={onCancel}
+            disabled={isLoading}
             className="
               rounded-xl
               border
@@ -56,6 +60,8 @@ export default function ConfirmModal({
               text-white
               transition
               hover:bg-[#16281F]
+              disabled:cursor-not-allowed
+              disabled:opacity-60
             "
           >
             {cancelText}
@@ -63,18 +69,10 @@ export default function ConfirmModal({
 
           <button
             onClick={onConfirm}
-            className="
-              rounded-xl
-              bg-red-600
-              px-5
-              py-2
-              font-medium
-              text-white
-              transition
-              hover:bg-red-700
-            "
+            disabled={isLoading}
+            className={`rounded-xl px-5 py-2 font-medium transition disabled:cursor-not-allowed disabled:opacity-60 ${confirmClassName}`}
           >
-            {confirmText}
+            {isLoading ? loadingText : confirmText}
           </button>
 
         </div>

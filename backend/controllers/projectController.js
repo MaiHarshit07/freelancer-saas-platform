@@ -198,6 +198,13 @@ const completeProject = async (req, res) => {
       });
     }
 
+    if (project.status !== "in-progress") {
+      return res.status(409).json({
+        success: false,
+        message: "Only in-progress projects can be completed",
+      });
+    }
+
     project.status = "completed";
 
     await project.save();

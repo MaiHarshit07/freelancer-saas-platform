@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaSignOutAlt } from "react-icons/fa";
 
@@ -6,10 +7,27 @@ import {
   clientLinks,
   freelancerLinks,
 } from "../../config/sidebarLinks";
+import { getUnreadNotificationCount } from "../../services/notificationService";
 
 function Sidebar() {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  useEffect(() => {
+    const fetchUnreadCount = async () => {
+      try {
+        const response = await getUnreadNotificationCount();
+        setUnreadCount(response.count || 0);
+      } catch (error) {
+        setUnreadCount(0);
+      }
+    };
+
+    if (user) {
+      fetchUnreadCount();
+    }
+  }, [user]);
 
   const links =
     user?.role === "client"
@@ -44,6 +62,7 @@ function Sidebar() {
           {links.map((link) => {
 
             const Icon = link.icon;
+            const showBadge = link.path === "/notifications" && unreadCount > 0;
 
             return (
               <NavLink
@@ -53,6 +72,7 @@ function Sidebar() {
                   `
                   flex
                   items-center
+                  justify-between
                   gap-4
                   rounded-xl
                   px-4
@@ -68,11 +88,19 @@ function Sidebar() {
                 `
                 }
               >
-                <Icon size={18} />
+                <div className="flex items-center gap-4">
+                  <Icon size={18} />
 
-                <span className="font-medium">
-                  {link.name}
-                </span>
+                  <span className="font-medium">
+                    {link.name}
+                  </span>
+                </div>
+
+                {showBadge && (
+                  <span className="inline-flex min-w-[22px] items-center justify-center rounded-full bg-[#D4AF37] px-1.5 py-0.5 text-[10px] font-bold text-black">
+                    {unreadCount > 99 ? "99+" : unreadCount}
+                  </span>
+                )}
 
               </NavLink>
             );

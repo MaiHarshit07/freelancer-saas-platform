@@ -77,6 +77,7 @@ function ClientDashboard() {
               .map((project) => (
                 <RecentProjectCard
                   key={project._id}
+                  projectId={project._id}
                   title={project.title}
                   budget={project.budget}
                   status={project.status}

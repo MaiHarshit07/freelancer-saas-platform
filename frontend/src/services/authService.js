@@ -40,11 +40,7 @@ export async function uploadProfileImage(file) {
   const formData = new FormData();
   formData.append("file", file);
 
-  const response = await api.post("/users/profile-image", formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  const response = await api.post("/users/profile-image", formData);
 
   return response.data;
 }
@@ -53,11 +49,7 @@ export async function uploadResume(file) {
   const formData = new FormData();
   formData.append("file", file);
 
-  const response = await api.post("/users/resume", formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  const response = await api.post("/users/resume", formData);
 
   return response.data;
 }

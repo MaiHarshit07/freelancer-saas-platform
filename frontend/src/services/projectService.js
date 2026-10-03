@@ -30,6 +30,12 @@ export const updateProject = async (projectId, projectData) => {
   return response.data;
 };
 
+export const completeProject = async (projectId) => {
+  const response = await api.put(`/projects/${projectId}/complete`);
+
+  return response.data;
+};
+
 export const deleteProject = async (projectId) => {
   const response = await api.delete(`/projects/${projectId}`);
 

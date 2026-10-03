@@ -25,17 +25,26 @@ const reviewSchema = new mongoose.Schema(
       required: true,
       min: 1,
       max: 5,
+      validate: {
+        validator: Number.isInteger,
+        message: "Rating must be an integer from 1 to 5",
+      },
     },
 
     comment: {
       type: String,
       required: true,
+      trim: true,
+      minlength: 3,
+      maxlength: 2000,
     },
   },
   {
     timestamps: true,
   },
 );
+
+reviewSchema.index({ project: 1, reviewer: 1 }, { unique: true });
 
 const Review = mongoose.model("Review", reviewSchema);
 

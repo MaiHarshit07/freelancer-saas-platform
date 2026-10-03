@@ -32,9 +32,17 @@ export default function ProjectMetaCard({
             Status
           </p>
 
-          <p className="mt-1 capitalize text-white">
-            {project.status}
-          </p>
+          <span
+            className={`mt-2 inline-flex rounded-full px-3 py-1 text-sm font-semibold capitalize ${
+              project.status === "completed"
+                ? "bg-blue-900/30 text-blue-300"
+                : project.status === "in-progress"
+                  ? "bg-yellow-900/30 text-yellow-300"
+                  : "bg-emerald-900/30 text-emerald-300"
+            }`}
+          >
+            {project.status?.replace("-", " ")}
+          </span>
         </div>
 
         <div>
