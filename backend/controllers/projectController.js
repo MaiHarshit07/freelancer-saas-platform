@@ -1,4 +1,5 @@
 const Project = require("../models/Project");
+const Notification = require("../models/Notification");
 
 const createProject = async (req, res) => {
   try {
@@ -58,10 +59,9 @@ const getProjects = async (req, res) => {
 
 const getProjectById = async (req, res) => {
   try {
-    const project = await Project.findById(req.params.id).populate(
-      "createdBy",
-      "name email role",
-    );
+    const project = await Project.findById(req.params.id)
+      .populate("createdBy", "name email role")
+      .populate("assignedFreelancer", "name email role");
 
     if (!project) {
       return res.status(404).json({
@@ -100,10 +100,20 @@ const updateProject = async (req, res) => {
       });
     }
 
+    const allowedUpdates = ["title", "description", "budget", "skills"];
+    const updates = Object.fromEntries(
+      allowedUpdates
+        .filter((field) => req.body[field] !== undefined)
+        .map((field) => [field, req.body[field]]),
+    );
+
     const updatedProject = await Project.findByIdAndUpdate(
       req.params.id,
-      req.body,
-      { new: true },
+      updates,
+      {
+        new: true,
+        runValidators: true,
+      },
     );
 
     res.status(200).json({
@@ -191,6 +201,16 @@ const completeProject = async (req, res) => {
     project.status = "completed";
 
     await project.save();
+
+    if (project.assignedFreelancer) {
+      await Notification.create({
+        recipient: project.assignedFreelancer,
+        type: "project_completed",
+        message: "Your project has been marked as completed",
+        project: project._id,
+        relatedId: project._id,
+      });
+    }
 
     res.status(200).json({
       success: true,

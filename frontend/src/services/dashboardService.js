@@ -6,6 +6,7 @@ export const getClientDashboard = async () => {
 };
 
 export const getFreelancerDashboard = async () => {
-  const response = await api.get("/proposals/freelancer-dashboard");
-  return response.data;
+  const response = await api.get("/proposals/dashboard/freelancer");
+
+  return response.data.dashboard;
 };

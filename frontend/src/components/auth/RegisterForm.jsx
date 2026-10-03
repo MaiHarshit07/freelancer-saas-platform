@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { registerUser } from "../../services/authService";
 
 import Button from "../ui/Button";
 import Input from "../ui/Input";
 
 function RegisterForm() {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -21,10 +25,18 @@ function RegisterForm() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    try {
+      setLoading(true);
+      await registerUser(formData);
+      navigate("/login");
+    } catch (error) {
+      alert(error.response?.data?.message || "Registration failed");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -82,8 +94,8 @@ function RegisterForm() {
           </select>
         </div>
 
-        <Button type="submit">
-          Create Account
+        <Button type="submit" disabled={loading}>
+          {loading ? "Creating account..." : "Create Account"}
         </Button>
       </form>
 

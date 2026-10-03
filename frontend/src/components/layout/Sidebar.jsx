@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaSignOutAlt } from "react-icons/fa";
 
 import { useAuth } from "../../context/AuthContext";
@@ -8,7 +8,8 @@ import {
 } from "../../config/sidebarLinks";
 
 function Sidebar() {
-  const { user } = useAuth();
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
   const links =
     user?.role === "client"
@@ -108,6 +109,10 @@ function Sidebar() {
         </div>
 
         <button
+          onClick={() => {
+            logout();
+            navigate("/login");
+          }}
           className="
             mt-5
             flex

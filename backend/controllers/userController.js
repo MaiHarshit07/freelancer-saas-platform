@@ -85,6 +85,44 @@ const uploadResume = async (req, res) => {
   }
 };
 
+const deleteResume = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    if (user.resume?.publicId) {
+      await cloudinary.uploader.destroy(user.resume.publicId, {
+        resource_type: "raw",
+      });
+    }
+
+    user.resume = {
+      url: "",
+      publicId: "",
+      originalName: "",
+    };
+
+    await user.save();
+
+    res.json({
+      success: true,
+      message: "Resume deleted successfully",
+      resume: user.resume,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 const getFreelancerProfile = async (req, res) => {
   try {
     const freelancer = await User.findById(req.params.id).select(
@@ -130,5 +168,6 @@ const getFreelancerProfile = async (req, res) => {
 module.exports = {
   updateProfileImage,
   uploadResume,
+  deleteResume,
   getFreelancerProfile,
 };

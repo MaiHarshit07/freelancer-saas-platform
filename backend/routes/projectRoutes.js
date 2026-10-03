@@ -32,8 +32,8 @@ router.get(
   getClientDashboard,
 );
 router.get("/:id", getProjectById);
-router.put("/:id", protect, updateProject);
-router.delete("/:id", protect, deleteProject);
+router.put("/:id", protect, authorizeRoles("client"), updateProject);
+router.delete("/:id", protect, authorizeRoles("client"), deleteProject);
 router.put("/:id/complete", protect, authorizeRoles("client"), completeProject);
 
 module.exports = router;

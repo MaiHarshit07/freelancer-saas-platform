@@ -1,7 +1,7 @@
 import { useAuth } from "../../context/AuthContext";
 
 import ClientDashboard from "./client/Dashboard";
-import FreelancerDashboard from "./freelancer/Dashboard";
+import FreelancerDashboard from "./freelancer/FreelancerDashboard";
 
 function Dashboard() {
   const { user } = useAuth();

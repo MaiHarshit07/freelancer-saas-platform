@@ -8,6 +8,8 @@ const {
   loginUser,
   getProfile,
   updateProfile,
+  changePassword,
+  deleteAccount,
 } = require("../controllers/authController");
 
 const protect = require("../middleware/authMiddleware");
@@ -18,6 +20,8 @@ router.post("/login", loginUser);
 
 router.get("/profile", protect, getProfile);
 router.put("/profile", protect, updateProfile);
+router.put("/change-password", protect, changePassword);
+router.delete("/account", protect, deleteAccount);
 router.get("/client-only", protect, authorizeRoles("client"), (req, res) => {
   res.json({
     message: "Welcome Client",

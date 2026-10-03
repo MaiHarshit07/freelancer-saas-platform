@@ -1,5 +1,6 @@
 const Review = require("../models/Review");
 const Project = require("../models/Project");
+const Notification = require("../models/Notification");
 
 const createReview = async (req, res) => {
   try {
@@ -28,6 +29,13 @@ const createReview = async (req, res) => {
       });
     }
 
+    if (!project.assignedFreelancer) {
+      return res.status(400).json({
+        success: false,
+        message: "A completed project must have an assigned freelancer",
+      });
+    }
+
     const existingReview = await Review.findOne({
       project: projectId,
     });
@@ -45,6 +53,14 @@ const createReview = async (req, res) => {
       freelancer: project.assignedFreelancer,
       rating,
       comment,
+    });
+
+    await Notification.create({
+      recipient: project.assignedFreelancer,
+      type: "review_received",
+      message: "You received a review for your project",
+      project: projectId,
+      relatedId: review._id,
     });
 
     res.status(201).json({

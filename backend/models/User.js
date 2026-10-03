@@ -20,6 +20,15 @@ const userSchema = mongoose.Schema(
       enum: ["client", "freelancer"],
       default: "freelancer",
     },
+    bio: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+    skills: {
+      type: [String],
+      default: [],
+    },
     profileImage: {
       url: {
         type: String,

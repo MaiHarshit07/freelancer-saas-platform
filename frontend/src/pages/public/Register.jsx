@@ -1,6 +1,10 @@
+import RegisterForm from "../../components/auth/RegisterForm";
+
 function Register() {
   return (
-    <h1>Register Page</h1>
+    <div className="flex min-h-screen items-center justify-center bg-[#07140E] px-6">
+      <RegisterForm />
+    </div>
   );
 }
 
