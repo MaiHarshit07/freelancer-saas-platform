@@ -247,6 +247,12 @@ npm install
 npm run dev
 ```
 
+## Deployment environment
+
+- Set `VITE_API_URL` in the Vercel frontend project to the backend origin, for example `https://your-backend.onrender.com` (do not include `/api`).
+- Set `FRONTEND_URL` in the Render backend service to `https://freelancer-saas-platform.vercel.app`. Multiple allowed frontend origins can be comma-separated.
+- Redeploy both services after changing their environment variables.
+
 ---
 
 # 📌 Roadmap
