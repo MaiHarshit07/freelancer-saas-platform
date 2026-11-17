@@ -1,3 +1,4 @@
+console.log("🚀 UPDATED SERVER.JS IS RUNNING");
 require("dotenv").config();
 
 const express = require("express");
@@ -239,4 +240,5 @@ const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
+  console.log("FRONTEND URL:", process.env.FRONTEND_URL);
 });
