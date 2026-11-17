@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Proposal = require("../models/Proposal");
+const Proposal = require("../models/proposal");
 const Project = require("../models/project");
 const Notification = require("../models/Notification");
 

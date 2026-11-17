@@ -9,7 +9,7 @@ const {
   getUnreadNotificationCount,
   markNotificationAsRead,
   markAllNotificationsAsRead,
-} = require("../controllers/notificationController");
+} = require("../controllers/NotificationController");
 
 // GET ALL NOTIFICATIONS
 router.get("/", protect, getNotifications);
