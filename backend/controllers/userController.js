@@ -126,7 +126,7 @@ const deleteResume = async (req, res) => {
 const getFreelancerProfile = async (req, res) => {
   try {
     const freelancer = await User.findById(req.params.id).select(
-      "-password -__v",
+      "name bio skills profileImage.url",
     );
 
     if (!freelancer) {
