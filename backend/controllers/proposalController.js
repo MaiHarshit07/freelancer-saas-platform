@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Proposal = require("../models/Proposal");
-const Project = require("../models/Project");
+const Project = require("../models/project");
 const Notification = require("../models/Notification");
 
 const getProjectIdFromRequest = (req) => {

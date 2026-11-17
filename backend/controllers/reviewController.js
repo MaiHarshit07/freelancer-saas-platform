@@ -1,5 +1,5 @@
 const Review = require("../models/Review");
-const Project = require("../models/Project");
+const Project = require("../models/project");
 const Notification = require("../models/Notification");
 const mongoose = require("mongoose");
 

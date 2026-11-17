@@ -21,7 +21,7 @@ const userRoutes = require("./routes/userRoutes");
 const portfolioRoutes = require("./routes/portfolioRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
-const Project = require("./models/Project");
+const Project = require("./models/project");
 // ==========================================
 // DATABASE
 // ==========================================

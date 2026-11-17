@@ -1,5 +1,5 @@
 const Message = require("../models/Message");
-const Project = require("../models/Project");
+const Project = require("../models/project");
 const Notification = require("../models/Notification");
 
 // ==========================================
