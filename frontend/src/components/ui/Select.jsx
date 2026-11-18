@@ -12,7 +12,7 @@ function Select({
       {label && (
         <label
           htmlFor={name}
-          className="block text-sm font-medium text-[#F5F7F5]"
+          className="block text-sm font-medium text-[#14532D]"
         >
           {label}
         </label>
@@ -29,11 +29,11 @@ function Select({
           w-full
           rounded-lg
           border
-          border-[#22362B]
-          bg-[#102018]
+          border-[#DCE8DE]
+          bg-[#FFFFFF]
           px-4
           py-3
-          text-[#F5F7F5]
+          text-[#14532D]
           outline-none
           transition-all
           duration-200

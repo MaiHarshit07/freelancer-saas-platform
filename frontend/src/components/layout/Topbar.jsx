@@ -12,8 +12,8 @@ function Topbar() {
         justify-between
         gap-6
         border-b
-        border-[#22362B]
-        bg-[#07140E]/90
+        border-[#DCE8DE]
+        bg-[#FFFFFF]/90
         px-8
         backdrop-blur-xl
       "
@@ -31,9 +31,9 @@ function Topbar() {
         <button
           className="
             rounded-xl
-            bg-[#102018]
+            bg-[#FFFFFF]
             p-3
-            text-[#C7D2CC]
+            text-[#52705D]
             transition
             hover:border
             hover:border-[#D4AF37]
@@ -52,7 +52,7 @@ function Topbar() {
             rounded-full
             bg-[#D4AF37]
             font-bold
-            text-black
+            text-[#14532D]
           "
         >
           H

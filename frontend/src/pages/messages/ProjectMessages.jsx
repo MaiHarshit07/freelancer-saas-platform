@@ -314,7 +314,7 @@ function ProjectMessages() {
   if (loading) {
     return (
       <div className="flex h-96 items-center justify-center">
-        <p className="text-lg text-[#76837B]">
+        <p className="text-lg text-[#66816D]">
           Loading messages...
         </p>
       </div>
@@ -358,7 +358,7 @@ function ProjectMessages() {
               }`}
             />
 
-            <span className="text-[#9AA8A1]">
+            <span className="text-[#52705D]">
               {socketConnected
                 ? "Live"
                 : "Offline"}
@@ -380,8 +380,8 @@ function ProjectMessages() {
           overflow-hidden
           rounded-2xl
           border
-          border-[#22362B]
-          bg-[#102018]
+          border-[#DCE8DE]
+          bg-[#FFFFFF]
         "
       >
 
@@ -394,11 +394,11 @@ function ProjectMessages() {
 
               <div>
 
-                <h2 className="text-xl font-semibold text-white">
+                <h2 className="text-xl font-semibold text-[#14532D]">
                   Start the conversation
                 </h2>
 
-                <p className="mt-2 text-[#76837B]">
+                <p className="mt-2 text-[#66816D]">
                   Send your first message.
                 </p>
 
@@ -430,8 +430,8 @@ function ProjectMessages() {
                       py-3
                       ${
                         isOwnMessage
-                          ? "bg-[#D4AF37] text-[#07140E]"
-                          : "bg-[#16281F] text-[#C7D2CC]"
+                          ? "bg-[#D4AF37] text-[#14532D]"
+                          : "bg-[#F1F7F1] text-[#52705D]"
                       }
                     `}
                   >
@@ -452,8 +452,8 @@ function ProjectMessages() {
                         mt-1 text-right text-[11px]
                         ${
                           isOwnMessage
-                            ? "text-[#07140E]/60"
-                            : "text-[#76837B]"
+                            ? "text-[#14532D]/60"
+                            : "text-[#66816D]"
                         }
                       `}
                     >
@@ -482,7 +482,7 @@ function ProjectMessages() {
             flex
             gap-3
             border-t
-            border-[#22362B]
+            border-[#DCE8DE]
             p-4
           "
         >
@@ -499,11 +499,11 @@ function ProjectMessages() {
               flex-1
               rounded-xl
               border
-              border-[#22362B]
-              bg-[#07140E]
+              border-[#DCE8DE]
+              bg-[#FFFFFF]
               px-4
               py-3
-              text-white
+              text-[#14532D]
               outline-none
               transition
               focus:border-[#D4AF37]
@@ -528,7 +528,7 @@ function ProjectMessages() {
               px-5
               py-3
               font-medium
-              text-[#07140E]
+              text-[#14532D]
               transition
               hover:scale-105
               disabled:cursor-not-allowed

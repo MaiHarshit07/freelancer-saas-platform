@@ -16,8 +16,8 @@ function RecentProjectCard({
         justify-between
         rounded-2xl
         border
-        border-[#22362B]
-        bg-[#102018]
+        border-[#DCE8DE]
+        bg-[#FFFFFF]
         p-5
         transition-all
         duration-300
@@ -25,11 +25,11 @@ function RecentProjectCard({
       "
     >
       <div>
-        <h3 className="text-lg font-semibold text-white">
+        <h3 className="text-lg font-semibold text-[#14532D]">
           {title}
         </h3>
 
-        <p className="mt-1 text-sm text-[#C7D2CC]">
+        <p className="mt-1 text-sm text-[#52705D]">
           Budget : ₹{budget}
         </p>
       </div>
@@ -39,17 +39,17 @@ function RecentProjectCard({
         <span
           className={`rounded-full px-4 py-2 text-sm capitalize ${
             status === "completed"
-              ? "bg-blue-900/30 text-blue-300"
+              ? "bg-blue-100 text-blue-700"
               : status === "in-progress"
-                ? "bg-yellow-900/30 text-yellow-300"
-                : "bg-[#1A3023] text-[#D4AF37]"
+                ? "bg-yellow-100 text-yellow-700"
+                : "bg-[#EAF4EC] text-[#D4AF37]"
           }`}
         >
           {status?.replace("-", " ")}
         </span>
 
         <FaArrowRight
-          className="text-[#C7D2CC]"
+          className="text-[#52705D]"
         />
 
       </div>

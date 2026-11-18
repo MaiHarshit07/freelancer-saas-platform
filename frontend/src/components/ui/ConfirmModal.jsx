@@ -32,17 +32,17 @@ export default function ConfirmModal({
           max-w-md
           rounded-2xl
           border
-          border-[#22362B]
-          bg-[#102018]
+          border-[#DCE8DE]
+          bg-[#FFFFFF]
           p-6
           shadow-2xl
         "
       >
-        <h2 className="text-xl font-semibold text-white">
+        <h2 className="text-xl font-semibold text-[#14532D]">
           {title}
         </h2>
 
-        <p className="mt-3 leading-7 text-[#9AA8A1]">
+        <p className="mt-3 leading-7 text-[#52705D]">
           {message}
         </p>
 
@@ -54,12 +54,12 @@ export default function ConfirmModal({
             className="
               rounded-xl
               border
-              border-[#22362B]
+              border-[#DCE8DE]
               px-5
               py-2
-              text-white
+              text-[#14532D]
               transition
-              hover:bg-[#16281F]
+              hover:bg-[#F1F7F1]
               disabled:cursor-not-allowed
               disabled:opacity-60
             "

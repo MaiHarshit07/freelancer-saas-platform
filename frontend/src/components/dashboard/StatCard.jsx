@@ -9,8 +9,8 @@ function StatCard({
       className="
         rounded-2xl
         border
-        border-[#22362B]
-        bg-[#102018]
+        border-[#DCE8DE]
+        bg-[#FFFFFF]
         p-6
         transition-all
         duration-300
@@ -22,11 +22,11 @@ function StatCard({
 
         <div>
 
-          <p className="text-sm text-[#C7D2CC]">
+          <p className="text-sm text-[#52705D]">
             {title}
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold text-white">
+          <h2 className="mt-3 text-3xl font-bold text-[#14532D]">
             {value}
           </h2>
 

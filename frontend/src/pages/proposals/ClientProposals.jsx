@@ -43,13 +43,13 @@ function ClientProposals() {
       />
 
       {loading ? (
-        <div className="py-20 text-center text-[#9AA8A1]">
+        <div className="py-20 text-center text-[#52705D]">
           Loading proposals...
         </div>
       ) : projects.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-[#22362B] bg-[#102018] py-20 text-center">
+        <div className="rounded-2xl border border-dashed border-[#DCE8DE] bg-[#FFFFFF] py-20 text-center">
           <FaBriefcase className="mx-auto text-3xl text-[#D4AF37]" />
-          <h2 className="mt-4 text-2xl font-semibold text-white">
+          <h2 className="mt-4 text-2xl font-semibold text-[#14532D]">
             No projects yet
           </h2>
           <Link
@@ -64,18 +64,18 @@ function ClientProposals() {
           {projects.map((project) => (
             <div
               key={project._id}
-              className="rounded-2xl border border-[#22362B] bg-[#102018] p-6"
+              className="rounded-2xl border border-[#DCE8DE] bg-[#FFFFFF] p-6"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h2 className="text-xl font-semibold text-white">
+                  <h2 className="text-xl font-semibold text-[#14532D]">
                     {project.title}
                   </h2>
-                  <p className="mt-2 text-sm capitalize text-[#9AA8A1]">
+                  <p className="mt-2 text-sm capitalize text-[#52705D]">
                     {project.status}
                   </p>
                 </div>
-                <span className="rounded-full bg-[#16281F] px-3 py-1 text-sm text-[#D4AF37]">
+                <span className="rounded-full bg-[#F1F7F1] px-3 py-1 text-sm text-[#D4AF37]">
                   {project.proposalCount} proposal
                   {project.proposalCount === 1 ? "" : "s"}
                 </span>
@@ -91,7 +91,7 @@ function ClientProposals() {
               {project.status === "in-progress" && (
                 <Link
                   to={`/projects/${project._id}/messages`}
-                  className="ml-5 inline-flex items-center gap-2 text-sm font-medium text-[#C7D2CC] hover:text-white hover:underline"
+                  className="ml-5 inline-flex items-center gap-2 text-sm font-medium text-[#52705D] hover:text-[#14532D] hover:underline"
                 >
                   Open messages <FaArrowRight />
                 </Link>

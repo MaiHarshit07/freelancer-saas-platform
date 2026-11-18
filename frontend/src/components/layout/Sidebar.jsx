@@ -35,11 +35,11 @@ function Sidebar() {
       : freelancerLinks;
 
   return (
-    <aside className="flex h-full flex-col bg-[#102018]">
+    <aside className="flex h-full flex-col bg-[#FFFFFF]">
 
       {/* Logo */}
 
-      <div className="border-b border-[#22362B] px-6 py-4">
+      <div className="border-b border-[#DCE8DE] px-6 py-4">
 
         <h1 className="text-2xl font-bold tracking-wide text-[#D4AF37]">
           FreelanceOS
@@ -53,7 +53,7 @@ function Sidebar() {
 
       <div className="flex-1 overflow-y-auto px-4 py-6">
 
-        <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-widest text-[#7F8D85]">
+        <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-widest text-[#66816D]">
           Workspace
         </p>
 
@@ -82,8 +82,8 @@ function Sidebar() {
 
                   ${
                     isActive
-                      ? "bg-[#D4AF37] text-black shadow-lg"
-                      : "text-[#C7D2CC] hover:bg-[#1A3023] hover:text-white"
+                      ? "bg-[#D4AF37] text-[#14532D] shadow-lg"
+                      : "text-[#52705D] hover:bg-[#EAF4EC] hover:text-[#14532D]"
                   }
                 `
                 }
@@ -97,7 +97,7 @@ function Sidebar() {
                 </div>
 
                 {showBadge && (
-                  <span className="inline-flex min-w-[22px] items-center justify-center rounded-full bg-[#D4AF37] px-1.5 py-0.5 text-[10px] font-bold text-black">
+                  <span className="inline-flex min-w-[22px] items-center justify-center rounded-full bg-[#D4AF37] px-1.5 py-0.5 text-[10px] font-bold text-[#14532D]">
                     {unreadCount > 99 ? "99+" : unreadCount}
                   </span>
                 )}
@@ -112,11 +112,11 @@ function Sidebar() {
 
       {/* Bottom Profile */}
 
-      <div className="border-t border-[#22362B] p-3">
+      <div className="border-t border-[#DCE8DE] p-3">
 
         <div className="flex items-center gap-3">
 
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#D4AF37] text-lg font-bold text-black">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#D4AF37] text-lg font-bold text-[#14532D]">
 
             {user?.name?.charAt(0).toUpperCase() || "U"}
 
@@ -124,11 +124,11 @@ function Sidebar() {
 
           <div>
 
-            <h3 className="font-semibold text-white">
+            <h3 className="font-semibold text-[#14532D]">
               {user?.name || "User"}
             </h3>
 
-            <p className="text-sm capitalize text-[#7F8D85]">
+            <p className="text-sm capitalize text-[#66816D]">
               {user?.role}
             </p>
 
@@ -150,12 +150,12 @@ function Sidebar() {
             gap-2
             rounded-xl
             border
-            border-[#22362B]
+            border-[#DCE8DE]
             py-3
-            text-[#C7D2CC]
+            text-[#52705D]
             transition
             hover:border-red-500
-            hover:text-red-400
+            hover:text-red-700
           "
         >
           <FaSignOutAlt />

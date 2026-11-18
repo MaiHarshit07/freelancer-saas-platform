@@ -57,7 +57,7 @@ function EditProject() {
   if (loading) {
     return (
       <div className="flex h-96 items-center justify-center">
-        <p className="text-lg text-[#76837B]">
+        <p className="text-lg text-[#66816D]">
           Loading Project...
         </p>
       </div>

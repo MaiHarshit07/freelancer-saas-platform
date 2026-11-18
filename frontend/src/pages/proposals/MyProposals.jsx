@@ -40,16 +40,16 @@ function MyProposals() {
   const getStatusStyle = (status) => {
     switch (status) {
       case "accepted":
-        return "bg-green-900/30 text-green-400";
+        return "bg-green-100 text-green-700";
 
       case "rejected":
-        return "bg-red-900/30 text-red-400";
+        return "bg-red-100 text-red-700";
 
       case "pending":
-        return "bg-yellow-900/30 text-yellow-400";
+        return "bg-yellow-100 text-yellow-700";
 
       default:
-        return "bg-gray-700 text-gray-300";
+        return "bg-[#F1F7F1] text-[#52705D]";
     }
   };
 
@@ -79,7 +79,7 @@ function MyProposals() {
 
       {loading ? (
         <div className="py-20 text-center">
-          <p className="text-[#9AA8A1]">
+          <p className="text-[#52705D]">
             Loading proposals...
           </p>
         </div>
@@ -89,21 +89,21 @@ function MyProposals() {
             rounded-2xl
             border
             border-dashed
-            border-[#22362B]
-            bg-[#102018]
+            border-[#DCE8DE]
+            bg-[#FFFFFF]
             py-20
             text-center
           "
         >
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#16281F] text-[#D4AF37]">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#F1F7F1] text-[#D4AF37]">
             <FaBriefcase size={24} />
           </div>
 
-          <h2 className="mt-5 text-2xl font-semibold text-white">
+          <h2 className="mt-5 text-2xl font-semibold text-[#14532D]">
             No Proposals Yet
           </h2>
 
-          <p className="mt-3 text-[#9AA8A1]">
+          <p className="mt-3 text-[#52705D]">
             Browse available projects and submit your first proposal.
           </p>
 
@@ -119,7 +119,7 @@ function MyProposals() {
               px-5
               py-3
               font-medium
-              text-[#07140E]
+              text-[#14532D]
               transition
               hover:scale-105
             "
@@ -138,8 +138,8 @@ function MyProposals() {
               className="
                 rounded-2xl
                 border
-                border-[#22362B]
-                bg-[#102018]
+                border-[#DCE8DE]
+                bg-[#FFFFFF]
                 p-6
                 transition
                 hover:border-[#D4AF37]
@@ -162,7 +162,7 @@ function MyProposals() {
                         items-center
                         justify-center
                         rounded-xl
-                        bg-[#16281F]
+                        bg-[#F1F7F1]
                         text-[#D4AF37]
                       "
                     >
@@ -171,12 +171,12 @@ function MyProposals() {
 
                     <div>
 
-                      <h2 className="text-xl font-semibold text-white">
+                      <h2 className="text-xl font-semibold text-[#14532D]">
                         {proposal.project?.title ||
                           "Project"}
                       </h2>
 
-                      <p className="mt-1 text-sm text-[#76837B]">
+                      <p className="mt-1 text-sm text-[#66816D]">
                         Project Budget: ₹{" "}
                         {proposal.project?.budget || 0}
                       </p>
@@ -189,11 +189,11 @@ function MyProposals() {
 
                   <div className="mt-5">
 
-                    <p className="text-sm font-medium text-[#C7D2CC]">
+                    <p className="text-sm font-medium text-[#52705D]">
                       Your Cover Letter
                     </p>
 
-                    <p className="mt-2 line-clamp-2 leading-7 text-[#9AA8A1]">
+                    <p className="mt-2 line-clamp-2 leading-7 text-[#52705D]">
                       {proposal.coverLetter}
                     </p>
 
@@ -205,7 +205,7 @@ function MyProposals() {
 
                 <div className="w-full lg:w-56">
 
-                  <p className="text-sm text-[#76837B]">
+                  <p className="text-sm text-[#66816D]">
                     Your Bid
                   </p>
 
@@ -245,7 +245,7 @@ function MyProposals() {
                       items-center
                       gap-2
                       text-sm
-                      text-[#C7D2CC]
+                      text-[#52705D]
                       transition
                       hover:text-[#D4AF37]
                     "

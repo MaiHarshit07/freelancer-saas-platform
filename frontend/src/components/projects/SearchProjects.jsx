@@ -9,7 +9,7 @@ function SearchProjects({ value, onChange }) {
           left-4
           top-1/2
           -translate-y-1/2
-          text-[#76837B]
+          text-[#66816D]
         "
       />
 
@@ -22,15 +22,15 @@ function SearchProjects({ value, onChange }) {
           w-full
           rounded-xl
           border
-          border-[#22362B]
-          bg-[#102018]
+          border-[#DCE8DE]
+          bg-[#FFFFFF]
           py-3
           pl-12
           pr-4
-          text-white
+          text-[#14532D]
           outline-none
           transition
-          placeholder:text-[#76837B]
+          placeholder:text-[#66816D]
           focus:border-[#D4AF37]
         "
       />

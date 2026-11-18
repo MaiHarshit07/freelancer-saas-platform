@@ -70,7 +70,7 @@ function ProjectDetails() {
   if (loading) {
     return (
       <div className="flex h-96 items-center justify-center">
-        <p className="text-lg text-[#76837B]">
+        <p className="text-lg text-[#66816D]">
           Loading Project...
         </p>
       </div>
@@ -151,7 +151,7 @@ function ProjectDetails() {
                 text-[#D4AF37]
                 transition
                 hover:bg-[#D4AF37]
-                hover:text-[#07140E]
+                hover:text-[#14532D]
               "
             >
               <FaComments />
@@ -164,7 +164,7 @@ function ProjectDetails() {
             <button
               type="button"
               onClick={() => setCompletionModalOpen(true)}
-              className="inline-flex items-center gap-2 rounded-xl border border-emerald-700/60 bg-emerald-900/20 px-5 py-3 font-medium text-emerald-300 transition hover:bg-emerald-900/40"
+              className="inline-flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 py-3 font-medium text-emerald-700 transition hover:bg-emerald-100"
             >
               <FaCheckCircle />
               Mark Completed
@@ -176,7 +176,7 @@ function ProjectDetails() {
             hasAssignedFreelancer && (
               <Link
                 to={`/reviews?projectId=${project._id}`}
-                className="inline-flex items-center gap-2 rounded-xl bg-[#D4AF37] px-5 py-3 font-medium text-[#07140E] transition hover:brightness-110"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#D4AF37] px-5 py-3 font-medium text-[#14532D] transition hover:brightness-110"
               >
                 <FaCheckCircle />
                 Review Freelancer
@@ -196,7 +196,7 @@ function ProjectDetails() {
               px-5
               py-3
               font-medium
-              text-[#07140E]
+              text-[#14532D]
               transition
               hover:scale-105
             "
@@ -227,7 +227,7 @@ function ProjectDetails() {
 
           <ProjectInfoCard title="Description">
 
-            <p className="leading-8 text-[#C7D2CC]">
+            <p className="leading-8 text-[#52705D]">
               {project.description}
             </p>
 
@@ -246,11 +246,11 @@ function ProjectDetails() {
                     key={skill}
                     className="
                       rounded-full
-                      bg-[#16281F]
+                      bg-[#F1F7F1]
                       px-4
                       py-2
                       text-sm
-                      text-[#C7D2CC]
+                      text-[#52705D]
                     "
                   >
                     {skill}
@@ -259,7 +259,7 @@ function ProjectDetails() {
 
               </div>
             ) : (
-              <p className="text-[#76837B]">
+              <p className="text-[#66816D]">
                 No skills specified.
               </p>
             )}
@@ -273,7 +273,7 @@ function ProjectDetails() {
 
             {!project.attachments ||
             project.attachments.length === 0 ? (
-              <p className="text-[#76837B]">
+              <p className="text-[#66816D]">
                 No attachments uploaded.
               </p>
             ) : (
@@ -295,8 +295,8 @@ function ProjectDetails() {
                       justify-between
                       rounded-xl
                       border
-                      border-[#22362B]
-                      bg-[#16281F]
+                      border-[#DCE8DE]
+                      bg-[#F1F7F1]
                       px-4
                       py-3
                       text-sm
@@ -310,7 +310,7 @@ function ProjectDetails() {
                         "View Attachment"}
                     </span>
 
-                    <span className="text-xs text-[#76837B]">
+                    <span className="text-xs text-[#66816D]">
                       Open
                     </span>
                   </a>
@@ -330,7 +330,7 @@ function ProjectDetails() {
               <div className="flex items-center justify-between gap-4">
 
                 <div>
-                  <p className="font-medium text-white">
+                  <p className="font-medium text-[#14532D]">
                     <Link
                       to={`/freelancers/${project.assignedFreelancer._id}`}
                       className="transition hover:text-[#D4AF37]"
@@ -340,7 +340,7 @@ function ProjectDetails() {
                   </p>
 
                   {project.assignedFreelancer.email && (
-                    <p className="mt-1 text-sm text-[#76837B]">
+                    <p className="mt-1 text-sm text-[#66816D]">
                       {project.assignedFreelancer.email}
                     </p>
                   )}
@@ -357,13 +357,13 @@ function ProjectDetails() {
                     items-center
                     gap-2
                     rounded-xl
-                    bg-[#16281F]
+                    bg-[#F1F7F1]
                     px-4
                     py-2
                     text-sm
                     text-[#D4AF37]
                     transition
-                    hover:bg-[#22362B]
+                    hover:bg-[#DCE8DE]
                     "
                   >
                     <FaComments />
@@ -376,11 +376,11 @@ function ProjectDetails() {
             ) : (
               <div>
 
-                <p className="text-[#76837B]">
+                <p className="text-[#66816D]">
                   No freelancer assigned yet.
                 </p>
 
-                <p className="mt-2 text-sm text-[#76837B]">
+                <p className="mt-2 text-sm text-[#66816D]">
                   Messaging will become available after
                   a proposal is accepted.
                 </p>
@@ -407,7 +407,7 @@ function ProjectDetails() {
         message="This will mark the project as completed and notify the assigned freelancer. You can then leave a review."
         confirmText="Complete Project"
         loadingText="Completing..."
-        confirmClassName="bg-[#D4AF37] text-[#07140E] hover:bg-[#e3c44d]"
+        confirmClassName="bg-[#D4AF37] text-[#14532D] hover:bg-[#e3c44d]"
         isLoading={completionLoading}
         onConfirm={handleCompleteProject}
         onCancel={() => setCompletionModalOpen(false)}

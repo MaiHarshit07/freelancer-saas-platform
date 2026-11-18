@@ -5,10 +5,10 @@ import Topbar from "./Topbar";
 
 function DashboardLayout() {
   return (
-    <div className="flex h-screen overflow-hidden bg-[#07140E]">
+    <div className="flex h-screen overflow-hidden bg-[#FFFFFF]">
 
       {/* Sidebar */}
-     <aside className="hidden lg:flex  flex-shrink-0 border-r border-[#22362B]">
+     <aside className="hidden lg:flex  flex-shrink-0 border-r border-[#DCE8DE]">
         <Sidebar />
       </aside>
 

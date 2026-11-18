@@ -9,7 +9,7 @@ function Textarea({
   return (
     <div className="space-y-2">
 
-      <label className="block text-sm font-medium text-[#C7D2CC]">
+      <label className="block text-sm font-medium text-[#52705D]">
         {label}
       </label>
 
@@ -24,12 +24,12 @@ function Textarea({
           resize-none
           rounded-xl
           border
-          border-[#22362B]
-          bg-[#102018]
+          border-[#DCE8DE]
+          bg-[#FFFFFF]
           px-4
           py-3
-          text-white
-          placeholder:text-[#7F8D85]
+          text-[#14532D]
+          placeholder:text-[#66816D]
           outline-none
           transition
           focus:border-[#D4AF37]

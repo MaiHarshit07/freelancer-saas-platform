@@ -66,11 +66,11 @@ function Messages() {
             justify-center
             rounded-2xl
             border
-            border-[#22362B]
-            bg-[#102018]
+            border-[#DCE8DE]
+            bg-[#FFFFFF]
           "
         >
-          <p className="text-lg text-[#76837B]">
+          <p className="text-lg text-[#66816D]">
             Loading conversations...
           </p>
         </div>
@@ -85,8 +85,8 @@ function Messages() {
             rounded-2xl
             border
             border-dashed
-            border-[#22362B]
-            bg-[#102018]
+            border-[#DCE8DE]
+            bg-[#FFFFFF]
             px-6
             text-center
           "
@@ -99,7 +99,7 @@ function Messages() {
               items-center
               justify-center
               rounded-2xl
-              bg-[#16281F]
+              bg-[#F1F7F1]
               text-2xl
               text-[#D4AF37]
             "
@@ -107,11 +107,11 @@ function Messages() {
             <FaComments />
           </div>
 
-          <h2 className="mt-5 text-2xl font-semibold text-white">
+          <h2 className="mt-5 text-2xl font-semibold text-[#14532D]">
             No Conversations Yet
           </h2>
 
-          <p className="mt-3 max-w-md text-[#9AA8A1]">
+          <p className="mt-3 max-w-md text-[#52705D]">
             Your project conversations will appear here once
             you start messaging with a client or freelancer.
           </p>
@@ -135,14 +135,14 @@ function Messages() {
                   block
                   rounded-2xl
                   border
-                  border-[#22362B]
-                  bg-[#102018]
+                  border-[#DCE8DE]
+                  bg-[#FFFFFF]
                   p-5
                   transition-all
                   duration-300
                   hover:-translate-y-1
                   hover:border-[#D4AF37]
-                  hover:bg-[#16281F]
+                  hover:bg-[#F1F7F1]
                 "
               >
                 <div className="flex items-start gap-4">
@@ -158,7 +158,7 @@ function Messages() {
                       items-center
                       justify-center
                       rounded-xl
-                      bg-[#16281F]
+                      bg-[#F1F7F1]
                       text-lg
                       font-semibold
                       text-[#D4AF37]
@@ -179,7 +179,7 @@ function Messages() {
                     <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
 
                       <div>
-                        <h2 className="truncate text-lg font-semibold text-white">
+                        <h2 className="truncate text-lg font-semibold text-[#14532D]">
                           {project.title}
                         </h2>
 
@@ -189,7 +189,7 @@ function Messages() {
                         </p>
                       </div>
 
-                      <div className="flex items-center gap-2 text-xs text-[#76837B]">
+                      <div className="flex items-center gap-2 text-xs text-[#66816D]">
                         <FaClock />
 
                         {formatMessageTime(
@@ -202,7 +202,7 @@ function Messages() {
 
                     {/* Latest Message */}
 
-                    <p className="mt-3 truncate text-sm text-[#9AA8A1]">
+                    <p className="mt-3 truncate text-sm text-[#52705D]">
                       {latestMessage?.content ||
                         "No messages yet."}
                     </p>
@@ -222,18 +222,18 @@ function Messages() {
                           ${
                             project.status ===
                             "completed"
-                              ? "bg-blue-900/30 text-blue-400"
+                              ? "bg-blue-100 text-blue-700"
                               : project.status ===
                                 "in-progress"
-                              ? "bg-yellow-900/30 text-yellow-400"
-                              : "bg-green-900/30 text-green-400"
+                              ? "bg-yellow-100 text-yellow-700"
+                              : "bg-green-100 text-green-700"
                           }
                         `}
                       >
                         {project.status}
                       </span>
 
-                      <span className="text-xs text-[#76837B]">
+                      <span className="text-xs text-[#66816D]">
                         Open conversation →
                       </span>
 

@@ -8,11 +8,11 @@ function PageHeader({
 
       <div>
 
-        <h1 className="text-4xl font-bold text-white">
+        <h1 className="text-4xl font-bold text-[#14532D]">
           {title}
         </h1>
 
-        <p className="mt-2 text-[#9BA7A0]">
+        <p className="mt-2 text-[#52705D]">
           {subtitle}
         </p>
 

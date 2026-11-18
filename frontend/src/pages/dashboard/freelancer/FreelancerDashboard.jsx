@@ -40,7 +40,7 @@ function FreelancerDashboard() {
   if (loading) {
     return (
       <div className="flex h-96 items-center justify-center">
-        <p className="text-lg text-[#76837B]">
+        <p className="text-lg text-[#66816D]">
           Loading Dashboard...
         </p>
       </div>
@@ -95,16 +95,16 @@ function FreelancerDashboard() {
         className="
           rounded-2xl
           border
-          border-[#22362B]
-          bg-[#102018]
+          border-[#DCE8DE]
+          bg-[#FFFFFF]
           p-6
         "
       >
-        <h2 className="text-xl font-semibold text-white">
+        <h2 className="text-xl font-semibold text-[#14532D]">
           Proposal Overview
         </h2>
 
-        <p className="mt-2 text-[#9AA8A1]">
+        <p className="mt-2 text-[#52705D]">
           Keep applying to projects that match your skills.
           Your accepted proposals will appear in your active
           projects.
@@ -112,8 +112,8 @@ function FreelancerDashboard() {
 
         <div className="mt-6 grid gap-4 sm:grid-cols-3">
 
-          <div className="rounded-xl bg-[#16281F] p-5">
-            <p className="text-sm text-[#76837B]">
+          <div className="rounded-xl bg-[#F1F7F1] p-5">
+            <p className="text-sm text-[#66816D]">
               Success Rate
             </p>
 
@@ -129,22 +129,22 @@ function FreelancerDashboard() {
             </p>
           </div>
 
-          <div className="rounded-xl bg-[#16281F] p-5">
-            <p className="text-sm text-[#76837B]">
+          <div className="rounded-xl bg-[#F1F7F1] p-5">
+            <p className="text-sm text-[#66816D]">
               Active Applications
             </p>
 
-            <p className="mt-2 text-2xl font-bold text-white">
+            <p className="mt-2 text-2xl font-bold text-[#14532D]">
               {stats?.pendingProposals || 0}
             </p>
           </div>
 
-          <div className="rounded-xl bg-[#16281F] p-5">
-            <p className="text-sm text-[#76837B]">
+          <div className="rounded-xl bg-[#F1F7F1] p-5">
+            <p className="text-sm text-[#66816D]">
               Accepted Work
             </p>
 
-            <p className="mt-2 text-2xl font-bold text-green-400">
+            <p className="mt-2 text-2xl font-bold text-green-700">
               {stats?.acceptedProposals || 0}
             </p>
           </div>

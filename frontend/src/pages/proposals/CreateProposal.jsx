@@ -70,7 +70,7 @@ export default function CreateProposal() {
           items-center
           gap-2
           text-sm
-          text-[#C7D2CC]
+          text-[#52705D]
           transition
           hover:text-[#D4AF37]
         "
@@ -99,7 +99,7 @@ export default function CreateProposal() {
           <div>
             <label
               htmlFor="bidAmount"
-              className="mb-2 block text-sm font-medium text-[#C7D2CC]"
+              className="mb-2 block text-sm font-medium text-[#52705D]"
             >
               Your Bid Amount (₹)
             </label>
@@ -117,11 +117,11 @@ export default function CreateProposal() {
                 w-full
                 rounded-xl
                 border
-                border-[#22362B]
-                bg-[#07140E]
+                border-[#DCE8DE]
+                bg-[#FFFFFF]
                 px-4
                 py-3
-                text-white
+                text-[#14532D]
                 outline-none
                 transition
                 focus:border-[#D4AF37]
@@ -136,7 +136,7 @@ export default function CreateProposal() {
           <div>
             <label
               htmlFor="coverLetter"
-              className="mb-2 block text-sm font-medium text-[#C7D2CC]"
+              className="mb-2 block text-sm font-medium text-[#52705D]"
             >
               Cover Letter
             </label>
@@ -154,11 +154,11 @@ export default function CreateProposal() {
                 resize-none
                 rounded-xl
                 border
-                border-[#22362B]
-                bg-[#07140E]
+                border-[#DCE8DE]
+                bg-[#FFFFFF]
                 px-4
                 py-3
-                text-white
+                text-[#14532D]
                 outline-none
                 transition
                 focus:border-[#D4AF37]
@@ -183,7 +183,7 @@ export default function CreateProposal() {
                 px-6
                 py-3
                 font-medium
-                text-[#07140E]
+                text-[#14532D]
                 transition
                 hover:scale-105
                 disabled:cursor-not-allowed

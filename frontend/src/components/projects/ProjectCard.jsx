@@ -8,16 +8,16 @@ function ProjectCard({
   const getStatusColor = (status) => {
     switch (status) {
       case "open":
-        return "bg-green-900/30 text-green-400";
+        return "bg-green-100 text-green-700";
 
       case "in-progress":
-        return "bg-yellow-900/30 text-yellow-400";
+        return "bg-yellow-100 text-yellow-700";
 
       case "completed":
-        return "bg-blue-900/30 text-blue-400";
+        return "bg-blue-100 text-blue-700";
 
       default:
-        return "bg-gray-700 text-white";
+        return "bg-[#F1F7F1] text-[#14532D]";
     }
   };
 
@@ -26,8 +26,8 @@ function ProjectCard({
       className="
         rounded-2xl
         border
-        border-[#22362B]
-        bg-[#102018]
+        border-[#DCE8DE]
+        bg-[#FFFFFF]
         p-6
         transition-all
         duration-300
@@ -41,11 +41,11 @@ function ProjectCard({
 
         <div className="flex-1">
 
-          <h2 className="text-xl font-semibold text-white">
+          <h2 className="text-xl font-semibold text-[#14532D]">
             {project.title}
           </h2>
 
-          <p className="mt-3 text-sm leading-6 text-[#9AA8A1]">
+          <p className="mt-3 text-sm leading-6 text-[#52705D]">
             {project.description}
           </p>
 
@@ -80,11 +80,11 @@ function ProjectCard({
             key={skill}
             className="
               rounded-full
-              bg-[#16281F]
+              bg-[#F1F7F1]
               px-3
               py-1
               text-xs
-              text-[#C7D2CC]
+              text-[#52705D]
             "
           >
             {skill}
@@ -95,14 +95,14 @@ function ProjectCard({
 
       {/* Created Date */}
 
-      <p className="mt-6 text-sm text-[#76837B]">
+      <p className="mt-6 text-sm text-[#66816D]">
         Created{" "}
         {new Date(project.createdAt).toLocaleDateString()}
       </p>
 
       {/* Divider */}
 
-      <div className="my-6 h-px bg-[#22362B]" />
+      <div className="my-6 h-px bg-[#DCE8DE]" />
 
       {/* Actions */}
 
@@ -110,7 +110,7 @@ function ProjectCard({
 
         <Link
           to={`/projects/edit/${project._id}`}
-          className="flex items-center gap-2 text-sm text-[#C7D2CC] transition hover:text-[#D4AF37]"
+          className="flex items-center gap-2 text-sm text-[#52705D] transition hover:text-[#D4AF37]"
         >
           <FaEdit />
           Edit
@@ -118,7 +118,7 @@ function ProjectCard({
 
         <Link
           to={`/projects/${project._id}`}
-          className="flex items-center gap-2 text-sm text-[#C7D2CC] transition hover:text-[#D4AF37]"
+          className="flex items-center gap-2 text-sm text-[#52705D] transition hover:text-[#D4AF37]"
         >
           <FaEye />
           View
@@ -126,7 +126,7 @@ function ProjectCard({
 
         <button
   onClick={() => onDelete(project._id)}
-  className="flex items-center gap-2 text-sm text-red-400 transition hover:text-red-300"
+  className="flex items-center gap-2 text-sm text-red-700 transition hover:text-red-700"
 >
   <FaTrash />
   Delete

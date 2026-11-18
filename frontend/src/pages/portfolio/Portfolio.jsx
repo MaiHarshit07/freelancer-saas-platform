@@ -174,19 +174,19 @@ function Portfolio() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 rounded-2xl border border-[#22362B] bg-[#0F1D18] p-6 shadow-lg shadow-[#07140E]/30 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-4 rounded-2xl border border-[#DCE8DE] bg-[#F8FBF8] p-6 shadow-lg shadow-[#FFFFFF]/30 md:flex-row md:items-center md:justify-between">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8CA096]">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#66816D]">
             Portfolio
           </p>
-          <h1 className="mt-2 text-3xl font-bold text-white">My Work</h1>
+          <h1 className="mt-2 text-3xl font-bold text-[#14532D]">My Work</h1>
         </div>
 
         {isOwner && (
           <button
             type="button"
             onClick={openAddModal}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#D4AF37] px-5 py-3 font-semibold text-black transition hover:scale-[1.02]"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#D4AF37] px-5 py-3 font-semibold text-[#14532D] transition hover:scale-[1.02]"
           >
             <FaPlus size={14} />
             Add Project
@@ -195,22 +195,22 @@ function Portfolio() {
       </div>
 
       {formError && (
-        <div className="rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+        <div className="rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-700">
           {formError}
         </div>
       )}
 
       {loading ? (
-        <div className="flex min-h-[220px] items-center justify-center rounded-2xl border border-[#22362B] bg-[#0F1D18] text-[#C7D2CC]">
+        <div className="flex min-h-[220px] items-center justify-center rounded-2xl border border-[#DCE8DE] bg-[#F8FBF8] text-[#52705D]">
           <div className="flex items-center gap-3">
             <FaSpinner className="animate-spin" size={18} />
             Loading portfolio...
           </div>
         </div>
       ) : items.length === 0 ? (
-        <div className="flex min-h-[220px] flex-col items-center justify-center rounded-2xl border border-dashed border-[#22362B] bg-[#0F1D18] px-6 text-center">
-          <h2 className="text-xl font-semibold text-white">No projects yet</h2>
-          <p className="mt-2 max-w-md text-sm text-[#8CA096]">
+        <div className="flex min-h-[220px] flex-col items-center justify-center rounded-2xl border border-dashed border-[#DCE8DE] bg-[#F8FBF8] px-6 text-center">
+          <h2 className="text-xl font-semibold text-[#14532D]">No projects yet</h2>
+          <p className="mt-2 max-w-md text-sm text-[#66816D]">
             Add a project to showcase your work, skills, and live links.
           </p>
         </div>
@@ -219,9 +219,9 @@ function Portfolio() {
           {items.map((item) => (
             <div
               key={item._id}
-              className="overflow-hidden rounded-2xl border border-[#22362B] bg-[#0F1D18] shadow-lg shadow-[#07140E]/30"
+              className="overflow-hidden rounded-2xl border border-[#DCE8DE] bg-[#F8FBF8] shadow-lg shadow-[#FFFFFF]/30"
             >
-              <div className="h-52 overflow-hidden bg-[#091912]">
+              <div className="h-52 overflow-hidden bg-[#FFFFFF]">
                 {item.image?.url ? (
                   <img
                     src={item.image.url}
@@ -237,8 +237,8 @@ function Portfolio() {
 
               <div className="space-y-4 p-5">
                 <div>
-                  <h3 className="text-xl font-semibold text-white">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-[#C7D2CC]">
+                  <h3 className="text-xl font-semibold text-[#14532D]">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#52705D]">
                     {item.description}
                   </p>
                 </div>
@@ -248,7 +248,7 @@ function Portfolio() {
                     {item.technologies.map((technology) => (
                       <span
                         key={`${item._id}-${technology}`}
-                        className="rounded-full border border-[#22362B] bg-[#102018] px-2.5 py-1 text-[11px] font-medium text-[#D4AF37]"
+                        className="rounded-full border border-[#DCE8DE] bg-[#FFFFFF] px-2.5 py-1 text-[11px] font-medium text-[#D4AF37]"
                       >
                         {technology}
                       </span>
@@ -256,7 +256,7 @@ function Portfolio() {
                   </div>
                 )}
 
-                <div className="space-y-2 text-sm text-[#C7D2CC]">
+                <div className="space-y-2 text-sm text-[#52705D]">
                   {item.projectLink && (
                     <a
                       href={item.projectLink}
@@ -289,7 +289,7 @@ function Portfolio() {
                         href={item.projectLink}
                         target="_blank"
                         rel="noreferrer"
-                        className="rounded-lg border border-[#22362B] px-3 py-2 text-xs font-medium text-[#C7D2CC] transition hover:border-[#D4AF37] hover:text-white"
+                        className="rounded-lg border border-[#DCE8DE] px-3 py-2 text-xs font-medium text-[#52705D] transition hover:border-[#D4AF37] hover:text-[#14532D]"
                       >
                         View
                       </a>
@@ -298,7 +298,7 @@ function Portfolio() {
                     <button
                       type="button"
                       onClick={() => openEditModal(item)}
-                      className="inline-flex items-center gap-2 rounded-lg border border-[#22362B] px-3 py-2 text-xs font-medium text-[#C7D2CC] transition hover:border-[#D4AF37] hover:text-white"
+                      className="inline-flex items-center gap-2 rounded-lg border border-[#DCE8DE] px-3 py-2 text-xs font-medium text-[#52705D] transition hover:border-[#D4AF37] hover:text-[#14532D]"
                     >
                       <FaPencilAlt size={12} />
                       Edit
@@ -308,7 +308,7 @@ function Portfolio() {
                       type="button"
                       onClick={() => handleDelete(item._id)}
                       disabled={deleteLoadingId === item._id}
-                      className="inline-flex items-center gap-2 rounded-lg border border-red-500/40 bg-red-500/10 px-3 py-2 text-xs font-medium text-red-200 transition hover:bg-red-500/20 disabled:cursor-not-allowed disabled:opacity-60"
+                      className="inline-flex items-center gap-2 rounded-lg border border-red-500/40 bg-red-500/10 px-3 py-2 text-xs font-medium text-red-700 transition hover:bg-red-500/20 disabled:cursor-not-allowed disabled:opacity-60"
                     >
                       <FaTrash size={12} />
                       {deleteLoadingId === item._id ? "Deleting..." : "Delete"}
@@ -322,16 +322,16 @@ function Portfolio() {
       )}
 
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#07140E]/80 p-4 backdrop-blur-sm">
-          <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-[#22362B] bg-[#0F1D18] p-5 shadow-2xl shadow-[#07140E]/50 md:p-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#14532D]/40 p-4 backdrop-blur-sm">
+          <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-[#DCE8DE] bg-[#F8FBF8] p-5 shadow-2xl shadow-[#FFFFFF]/50 md:p-6">
             <div className="mb-5 flex items-center justify-between gap-4">
-              <h2 className="text-2xl font-bold text-white">
+              <h2 className="text-2xl font-bold text-[#14532D]">
                 {editingId ? "Edit Project" : "Add Project"}
               </h2>
               <button
                 type="button"
                 onClick={closeModal}
-                className="text-xl text-[#8CA096] transition hover:text-white"
+                className="text-xl text-[#66816D] transition hover:text-[#14532D]"
               >
                 ×
               </button>
@@ -339,31 +339,31 @@ function Portfolio() {
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label className="mb-2 block text-sm font-medium text-[#C7D2CC]">Title</label>
+                <label className="mb-2 block text-sm font-medium text-[#52705D]">Title</label>
                 <input
                   type="text"
                   value={form.title}
                   onChange={(event) => setForm((prev) => ({ ...prev, title: event.target.value }))}
-                  className="w-full rounded-xl border border-[#22362B] bg-[#07140E] px-4 py-3 text-white outline-none transition focus:border-[#D4AF37]"
+                  className="w-full rounded-xl border border-[#DCE8DE] bg-[#FFFFFF] px-4 py-3 text-[#14532D] outline-none transition focus:border-[#D4AF37]"
                   placeholder="Project title"
                 />
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium text-[#C7D2CC]">Description</label>
+                <label className="mb-2 block text-sm font-medium text-[#52705D]">Description</label>
                 <textarea
                   rows={4}
                   value={form.description}
                   onChange={(event) =>
                     setForm((prev) => ({ ...prev, description: event.target.value }))
                   }
-                  className="w-full rounded-xl border border-[#22362B] bg-[#07140E] px-4 py-3 text-white outline-none transition focus:border-[#D4AF37]"
+                  className="w-full rounded-xl border border-[#DCE8DE] bg-[#FFFFFF] px-4 py-3 text-[#14532D] outline-none transition focus:border-[#D4AF37]"
                   placeholder="Brief description of the project and your contribution"
                 />
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium text-[#C7D2CC]">
+                <label className="mb-2 block text-sm font-medium text-[#52705D]">
                   Technologies / Skills
                 </label>
                 <input
@@ -372,18 +372,18 @@ function Portfolio() {
                   onChange={(event) =>
                     setForm((prev) => ({ ...prev, technologies: event.target.value }))
                   }
-                  className="w-full rounded-xl border border-[#22362B] bg-[#07140E] px-4 py-3 text-white outline-none transition focus:border-[#D4AF37]"
+                  className="w-full rounded-xl border border-[#DCE8DE] bg-[#FFFFFF] px-4 py-3 text-[#14532D] outline-none transition focus:border-[#D4AF37]"
                   placeholder="React, Node.js, MongoDB"
                 />
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium text-[#C7D2CC]">Project image</label>
+                <label className="mb-2 block text-sm font-medium text-[#52705D]">Project image</label>
                 <input
                   type="file"
                   accept="image/*"
                   onChange={handleImageChange}
-                  className="w-full rounded-xl border border-dashed border-[#22362B] bg-[#07140E] px-4 py-3 text-[#C7D2CC] outline-none"
+                  className="w-full rounded-xl border border-dashed border-[#DCE8DE] bg-[#FFFFFF] px-4 py-3 text-[#52705D] outline-none"
                 />
                 {form.imagePreview && (
                   <img
@@ -396,34 +396,34 @@ function Portfolio() {
 
               <div className="grid gap-5 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-[#C7D2CC]">Live URL</label>
+                  <label className="mb-2 block text-sm font-medium text-[#52705D]">Live URL</label>
                   <input
                     type="url"
                     value={form.projectLink}
                     onChange={(event) =>
                       setForm((prev) => ({ ...prev, projectLink: event.target.value }))
                     }
-                    className="w-full rounded-xl border border-[#22362B] bg-[#07140E] px-4 py-3 text-white outline-none transition focus:border-[#D4AF37]"
+                    className="w-full rounded-xl border border-[#DCE8DE] bg-[#FFFFFF] px-4 py-3 text-[#14532D] outline-none transition focus:border-[#D4AF37]"
                     placeholder="https://example.com"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-[#C7D2CC]">GitHub URL</label>
+                  <label className="mb-2 block text-sm font-medium text-[#52705D]">GitHub URL</label>
                   <input
                     type="url"
                     value={form.githubUrl}
                     onChange={(event) =>
                       setForm((prev) => ({ ...prev, githubUrl: event.target.value }))
                     }
-                    className="w-full rounded-xl border border-[#22362B] bg-[#07140E] px-4 py-3 text-white outline-none transition focus:border-[#D4AF37]"
+                    className="w-full rounded-xl border border-[#DCE8DE] bg-[#FFFFFF] px-4 py-3 text-[#14532D] outline-none transition focus:border-[#D4AF37]"
                     placeholder="https://github.com/your-project"
                   />
                 </div>
               </div>
 
               {formError && (
-                <div className="rounded-xl border border-red-500/40 bg-red-500/10 px-3 py-2 text-sm text-red-200">
+                <div className="rounded-xl border border-red-500/40 bg-red-500/10 px-3 py-2 text-sm text-red-700">
                   {formError}
                 </div>
               )}
@@ -432,7 +432,7 @@ function Portfolio() {
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="rounded-xl border border-[#22362B] px-4 py-2.5 font-medium text-[#C7D2CC] transition hover:border-[#D4AF37] hover:text-white"
+                  className="rounded-xl border border-[#DCE8DE] px-4 py-2.5 font-medium text-[#52705D] transition hover:border-[#D4AF37] hover:text-[#14532D]"
                 >
                   Cancel
                 </button>
@@ -440,7 +440,7 @@ function Portfolio() {
                 <button
                   type="submit"
                   disabled={submitLoading}
-                  className="rounded-xl bg-[#D4AF37] px-5 py-2.5 font-semibold text-black transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="rounded-xl bg-[#D4AF37] px-5 py-2.5 font-semibold text-[#14532D] transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {submitLoading ? "Saving..." : editingId ? "Save Changes" : "Save Project"}
                 </button>

@@ -1,4 +1,3 @@
-console.log("🚀 UPDATED SERVER.JS IS RUNNING");
 require("dotenv").config();
 
 const express = require("express");
@@ -20,7 +19,7 @@ const messageRoutes = require("./routes/messageRoutes");
 const uploadRoutes = require("./routes/uploadRoutes");
 const userRoutes = require("./routes/userRoutes");
 const portfolioRoutes = require("./routes/portfolioRoutes");
-const notificationRoutes = require("./routes/NotificationRoutes");
+const notificationRoutes = require("./routes/notificationRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const Project = require("./models/project");
 // ==========================================

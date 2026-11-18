@@ -13,9 +13,16 @@ function Button({
         px-5
         py-3
         font-semibold
-        text-black
+        text-[#14532D]
+        shadow-sm
         transition
-        hover:scale-105
+        duration-200
+        hover:-translate-y-0.5
+        hover:bg-[#E6C766]
+        hover:shadow-md
+        focus-visible:outline-2
+        focus-visible:outline-offset-2
+        focus-visible:outline-[#166534]
       "
     >
       {children}

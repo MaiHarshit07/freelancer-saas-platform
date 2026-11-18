@@ -7,12 +7,12 @@ export default function ProjectInfoCard({
       className="
         rounded-2xl
         border
-        border-[#22362B]
-        bg-[#102018]
+        border-[#DCE8DE]
+        bg-[#FFFFFF]
         p-6
       "
     >
-      <h3 className="mb-4 text-lg font-semibold text-white">
+      <h3 className="mb-4 text-lg font-semibold text-[#14532D]">
         {title}
       </h3>
 

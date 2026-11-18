@@ -35,10 +35,10 @@ function LoginForm() {
   }
 
   return (
-    <div className="w-full max-w-md rounded-2xl border border-[#22362B] bg-[#102018] p-8 shadow-xl">
-      <h1 className="mb-2 text-3xl font-bold text-[#F5F7F5]">Welcome Back</h1>
+    <div className="w-full max-w-md rounded-2xl border border-[#DCE8DE] bg-[#FFFFFF] p-8 shadow-xl">
+      <h1 className="mb-2 text-3xl font-bold text-[#14532D]">Welcome Back</h1>
 
-      <p className="mb-8 text-[#C7D2CC]">
+      <p className="mb-8 text-[#52705D]">
         Login to continue your freelance journey.
       </p>
 

@@ -68,7 +68,7 @@ function ClientDashboard() {
       </div>
 
       <div className="mt-12">
-        <h2 className="mb-5 text-2xl font-bold text-white">Recent Projects</h2>
+        <h2 className="mb-5 text-2xl font-bold text-[#14532D]">Recent Projects</h2>
 
         <div className="space-y-4">
           {projects.length > 0 ? (
@@ -84,7 +84,7 @@ function ClientDashboard() {
                 />
               ))
           ) : (
-            <p className="text-[#C7D2CC]">No projects found.</p>
+            <p className="text-[#52705D]">No projects found.</p>
           )}
         </div>
       </div>

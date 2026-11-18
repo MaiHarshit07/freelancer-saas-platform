@@ -70,15 +70,15 @@ function Projects() {
       />
 
       {loading ? (
-        <div className="py-20 text-center text-[#9AA8A1]">
+        <div className="py-20 text-center text-[#52705D]">
           Loading projects...
         </div>
       ) : projects.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-[#22362B] bg-[#102018] py-20 text-center">
-          <h2 className="text-2xl font-semibold text-white">
+        <div className="rounded-2xl border border-dashed border-[#DCE8DE] bg-[#FFFFFF] py-20 text-center">
+          <h2 className="text-2xl font-semibold text-[#14532D]">
             No projects yet
           </h2>
-          <p className="mt-3 text-[#9AA8A1]">
+          <p className="mt-3 text-[#52705D]">
             Start by creating your first project.
           </p>
           <Button

@@ -98,7 +98,7 @@ function ProjectProposals() {
           items-center
           gap-2
           text-sm
-          text-[#C7D2CC]
+          text-[#52705D]
           transition
           hover:text-[#D4AF37]
         "
@@ -114,7 +114,7 @@ function ProjectProposals() {
 
       {loading ? (
         <div className="py-20 text-center">
-          <p className="text-[#9AA8A1]">
+          <p className="text-[#52705D]">
             Loading proposals...
           </p>
         </div>
@@ -124,17 +124,17 @@ function ProjectProposals() {
             rounded-2xl
             border
             border-dashed
-            border-[#22362B]
-            bg-[#102018]
+            border-[#DCE8DE]
+            bg-[#FFFFFF]
             py-20
             text-center
           "
         >
-          <h2 className="text-2xl font-semibold text-white">
+          <h2 className="text-2xl font-semibold text-[#14532D]">
             No Proposals Yet
           </h2>
 
-          <p className="mt-3 text-[#9AA8A1]">
+          <p className="mt-3 text-[#52705D]">
             Freelancers who apply to this project will appear here.
           </p>
         </div>
@@ -150,8 +150,8 @@ function ProjectProposals() {
                 className="
                   rounded-2xl
                   border
-                  border-[#22362B]
-                  bg-[#102018]
+                  border-[#DCE8DE]
+                  bg-[#FFFFFF]
                   p-6
                 "
               >
@@ -168,7 +168,7 @@ function ProjectProposals() {
                           items-center
                           justify-center
                           rounded-full
-                          bg-[#16281F]
+                          bg-[#F1F7F1]
                           text-[#D4AF37]
                         "
                       >
@@ -176,7 +176,7 @@ function ProjectProposals() {
                       </div>
 
                       <div>
-                        <h2 className="font-semibold text-white">
+                        <h2 className="font-semibold text-[#14532D]">
                           <Link
                             to={`/freelancers/${proposal.freelancer?._id}`}
                             className="transition hover:text-[#D4AF37]"
@@ -185,7 +185,7 @@ function ProjectProposals() {
                           </Link>
                         </h2>
 
-                        <p className="text-sm text-[#76837B]">
+                        <p className="text-sm text-[#66816D]">
                           {proposal.freelancer?.email}
                         </p>
                       </div>
@@ -194,11 +194,11 @@ function ProjectProposals() {
                     {/* Cover Letter */}
 
                     <div className="mt-6">
-                      <h3 className="text-sm font-semibold text-[#C7D2CC]">
+                      <h3 className="text-sm font-semibold text-[#52705D]">
                         Cover Letter
                       </h3>
 
-                      <p className="mt-2 leading-7 text-[#9AA8A1]">
+                      <p className="mt-2 leading-7 text-[#52705D]">
                         {proposal.coverLetter}
                       </p>
                     </div>
@@ -207,7 +207,7 @@ function ProjectProposals() {
                   {/* Right Side */}
 
                   <div className="w-full lg:w-64">
-                    <p className="text-sm text-[#76837B]">
+                    <p className="text-sm text-[#66816D]">
                       Freelancer Bid
                     </p>
 
@@ -226,10 +226,10 @@ function ProjectProposals() {
                           font-semibold
                           ${
                             proposal.status === "accepted"
-                              ? "bg-green-900/30 text-green-400"
+                              ? "bg-green-100 text-green-700"
                               : proposal.status === "rejected"
-                              ? "bg-red-900/30 text-red-400"
-                              : "bg-yellow-900/30 text-yellow-400"
+                              ? "bg-red-100 text-red-700"
+                              : "bg-yellow-100 text-yellow-700"
                           }
                         `}
                       >
@@ -258,7 +258,7 @@ function ProjectProposals() {
                             py-3
                             text-sm
                             font-medium
-                            text-white
+                            text-[#14532D]
                             transition
                             hover:bg-green-700
                             disabled:cursor-not-allowed
@@ -290,7 +290,7 @@ function ProjectProposals() {
                             py-3
                             text-sm
                             font-medium
-                            text-red-400
+                            text-red-700
                             transition
                             hover:bg-red-500/10
                             disabled:cursor-not-allowed
@@ -307,7 +307,7 @@ function ProjectProposals() {
                     {proposal.status === "accepted" && (
                       <Link
                         to={`/projects/${projectId}/messages`}
-                        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#D4AF37] px-4 py-3 text-sm font-medium text-[#07140E] transition hover:bg-[#E6C766]"
+                        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#D4AF37] px-4 py-3 text-sm font-medium text-[#14532D] transition hover:bg-[#E6C766]"
                       >
                         <FaComments />
                         Message Freelancer

@@ -81,13 +81,13 @@ export default function BrowseProjects() {
           gap-3
           rounded-2xl
           border
-          border-[#22362B]
-          bg-[#102018]
+          border-[#DCE8DE]
+          bg-[#FFFFFF]
           px-5
           py-4
         "
       >
-        <FaSearch className="text-[#76837B]" />
+        <FaSearch className="text-[#66816D]" />
 
         <input
           type="text"
@@ -99,9 +99,9 @@ export default function BrowseProjects() {
           className="
             w-full
             bg-transparent
-            text-white
+            text-[#14532D]
             outline-none
-            placeholder:text-[#76837B]
+            placeholder:text-[#66816D]
           "
         />
       </div>
@@ -110,7 +110,7 @@ export default function BrowseProjects() {
 
       {loading ? (
         <div className="py-20 text-center">
-          <p className="text-[#9AA8A1]">
+          <p className="text-[#52705D]">
             Loading Projects...
           </p>
         </div>
@@ -120,26 +120,26 @@ export default function BrowseProjects() {
             rounded-2xl
             border
             border-dashed
-            border-[#22362B]
-            bg-[#102018]
+            border-[#DCE8DE]
+            bg-[#FFFFFF]
             py-20
             text-center
           "
         >
-          <h2 className="text-2xl font-semibold text-white">
+          <h2 className="text-2xl font-semibold text-[#14532D]">
             No Projects Found
           </h2>
 
-          <p className="mt-3 text-[#9AA8A1]">
+          <p className="mt-3 text-[#52705D]">
             Try searching for another project or skill.
           </p>
         </div>
       ) : (
         <>
           <div className="flex items-center justify-between">
-            <p className="text-sm text-[#76837B]">
+            <p className="text-sm text-[#66816D]">
               Showing{" "}
-              <span className="font-medium text-[#C7D2CC]">
+              <span className="font-medium text-[#52705D]">
                 {filteredProjects.length}
               </span>{" "}
               open projects

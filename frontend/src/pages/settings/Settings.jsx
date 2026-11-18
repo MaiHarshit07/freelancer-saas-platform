@@ -250,19 +250,19 @@ function Settings() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-3 rounded-2xl border border-[#22362B] bg-[#0F1D18] p-6 shadow-lg shadow-[#07140E]/30">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8CA096]">
+      <div className="flex flex-col gap-3 rounded-2xl border border-[#DCE8DE] bg-[#F8FBF8] p-6 shadow-lg shadow-[#FFFFFF]/30">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#66816D]">
           Account
         </p>
-        <h1 className="text-3xl font-bold text-white">Settings</h1>
+        <h1 className="text-3xl font-bold text-[#14532D]">Settings</h1>
       </div>
 
       {status.message && (
         <div
           className={`rounded-xl border px-4 py-3 text-sm ${
             status.type === "success"
-              ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-200"
-              : "border-red-500/40 bg-red-500/10 text-red-200"
+              ? "border-emerald-500/40 bg-emerald-50 text-emerald-800"
+              : "border-red-500/40 bg-red-500/10 text-red-700"
           }`}
         >
           <div className="flex items-center gap-2">
@@ -277,7 +277,7 @@ function Settings() {
       )}
 
       <div className="grid gap-6 lg:grid-cols-[260px_minmax(0,1fr)]">
-        <aside className="rounded-2xl border border-[#22362B] bg-[#0F1D18] p-3">
+        <aside className="rounded-2xl border border-[#DCE8DE] bg-[#F8FBF8] p-3">
           <div className="hidden gap-2 lg:flex lg:flex-col">
             {navItems.map((item) => {
               const Icon = item.icon;
@@ -290,8 +290,8 @@ function Settings() {
                   onClick={() => setActiveTab(item.id)}
                   className={`flex items-center gap-3 rounded-xl px-3 py-3 text-left transition ${
                     isActive
-                      ? "bg-[#D4AF37] text-black"
-                      : "text-[#C7D2CC] hover:bg-[#1A3023] hover:text-white"
+                      ? "bg-[#D4AF37] text-[#14532D]"
+                      : "text-[#52705D] hover:bg-[#EAF4EC] hover:text-[#14532D]"
                   }`}
                 >
                   <Icon size={16} />
@@ -302,13 +302,13 @@ function Settings() {
           </div>
 
           <div className="lg:hidden">
-            <label className="block text-xs font-semibold uppercase tracking-[0.2em] text-[#8CA096]">
+            <label className="block text-xs font-semibold uppercase tracking-[0.2em] text-[#66816D]">
               Section
             </label>
             <select
               value={activeTab}
               onChange={(event) => setActiveTab(event.target.value)}
-              className="mt-2 w-full rounded-xl border border-[#22362B] bg-[#07140E] px-3 py-3 text-sm text-white outline-none"
+              className="mt-2 w-full rounded-xl border border-[#DCE8DE] bg-[#FFFFFF] px-3 py-3 text-sm text-[#14532D] outline-none"
             >
               {navItems.map((item) => (
                 <option key={item.id} value={item.id}>
@@ -319,17 +319,17 @@ function Settings() {
           </div>
         </aside>
 
-        <div className="rounded-2xl border border-[#22362B] bg-[#0F1D18] p-5 md:p-6">
+        <div className="rounded-2xl border border-[#DCE8DE] bg-[#F8FBF8] p-5 md:p-6">
           <div className="mb-6 flex items-center justify-between gap-3">
             <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-[#8CA096]">Section</p>
-              <h2 className="mt-1 text-2xl font-bold text-white">{currentTabLabel}</h2>
+              <p className="text-xs uppercase tracking-[0.2em] text-[#66816D]">Section</p>
+              <h2 className="mt-1 text-2xl font-bold text-[#14532D]">{currentTabLabel}</h2>
             </div>
           </div>
 
           {activeTab === "profile" && (
             <form onSubmit={handleProfileSave} className="space-y-6">
-              <div className="flex flex-col gap-5 rounded-2xl border border-[#22362B] bg-[#0B1714] p-5 md:flex-row md:items-center">
+              <div className="flex flex-col gap-5 rounded-2xl border border-[#DCE8DE] bg-[#FFFFFF] p-5 md:flex-row md:items-center">
                 <div className="relative">
                   {profileImageUrl ? (
                     <img
@@ -338,12 +338,12 @@ function Settings() {
                       className="h-24 w-24 rounded-full object-cover ring-2 ring-[#D4AF37]"
                     />
                   ) : (
-                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-[#1A3023] text-2xl font-bold text-[#D4AF37]">
+                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-[#EAF4EC] text-2xl font-bold text-[#D4AF37]">
                       {user?.name?.charAt(0)?.toUpperCase() || "U"}
                     </div>
                   )}
 
-                  <label className="absolute -bottom-1 -right-1 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-[#0F1D18] bg-[#D4AF37] text-black shadow-lg transition hover:scale-105">
+                  <label className="absolute -bottom-1 -right-1 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-[#F8FBF8] bg-[#D4AF37] text-[#14532D] shadow-lg transition hover:scale-105">
                     <FaCamera size={14} />
                     <input
                       type="file"
@@ -355,8 +355,8 @@ function Settings() {
                 </div>
 
                 <div className="flex-1">
-                  <p className="text-sm text-[#8CA096]">Profile photo</p>
-                  <p className="mt-1 text-base font-medium text-white">
+                  <p className="text-sm text-[#66816D]">Profile photo</p>
+                  <p className="mt-1 text-base font-medium text-[#14532D]">
                     {loading.image ? "Uploading..." : "Update your photo for your profile"}
                   </p>
                 </div>
@@ -364,39 +364,39 @@ function Settings() {
 
               <div className="grid gap-5 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-[#C7D2CC]">Name</label>
+                  <label className="mb-2 block text-sm font-medium text-[#52705D]">Name</label>
                   <input
                     type="text"
                     value={profileForm.name}
                     onChange={(event) =>
                       setProfileForm((prev) => ({ ...prev, name: event.target.value }))
                     }
-                    className="w-full rounded-xl border border-[#22362B] bg-[#07140E] px-4 py-3 text-white outline-none transition focus:border-[#D4AF37]"
+                    className="w-full rounded-xl border border-[#DCE8DE] bg-[#FFFFFF] px-4 py-3 text-[#14532D] outline-none transition focus:border-[#D4AF37]"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-[#C7D2CC]">Email</label>
+                  <label className="mb-2 block text-sm font-medium text-[#52705D]">Email</label>
                   <input
                     type="email"
                     value={profileForm.email}
                     readOnly
-                    className="w-full cursor-not-allowed rounded-xl border border-[#22362B] bg-[#091912] px-4 py-3 text-[#8CA096] outline-none"
+                    className="w-full cursor-not-allowed rounded-xl border border-[#DCE8DE] bg-[#FFFFFF] px-4 py-3 text-[#66816D] outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-[#C7D2CC]">Role</label>
+                  <label className="mb-2 block text-sm font-medium text-[#52705D]">Role</label>
                   <input
                     type="text"
                     value={profileForm.role}
                     readOnly
-                    className="w-full cursor-not-allowed rounded-xl border border-[#22362B] bg-[#091912] px-4 py-3 capitalize text-[#8CA096] outline-none"
+                    className="w-full cursor-not-allowed rounded-xl border border-[#DCE8DE] bg-[#FFFFFF] px-4 py-3 capitalize text-[#66816D] outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-[#C7D2CC]">Skills</label>
+                  <label className="mb-2 block text-sm font-medium text-[#52705D]">Skills</label>
                   <input
                     type="text"
                     value={profileForm.skills}
@@ -404,13 +404,13 @@ function Settings() {
                       setProfileForm((prev) => ({ ...prev, skills: event.target.value }))
                     }
                     placeholder="React, Node.js, UI/UX"
-                    className="w-full rounded-xl border border-[#22362B] bg-[#07140E] px-4 py-3 text-white outline-none transition focus:border-[#D4AF37]"
+                    className="w-full rounded-xl border border-[#DCE8DE] bg-[#FFFFFF] px-4 py-3 text-[#14532D] outline-none transition focus:border-[#D4AF37]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium text-[#C7D2CC]">Bio</label>
+                <label className="mb-2 block text-sm font-medium text-[#52705D]">Bio</label>
                 <textarea
                   rows={5}
                   value={profileForm.bio}
@@ -418,7 +418,7 @@ function Settings() {
                     setProfileForm((prev) => ({ ...prev, bio: event.target.value }))
                   }
                   placeholder="Tell clients or employers a little about yourself..."
-                  className="w-full rounded-xl border border-[#22362B] bg-[#07140E] px-4 py-3 text-white outline-none transition focus:border-[#D4AF37]"
+                  className="w-full rounded-xl border border-[#DCE8DE] bg-[#FFFFFF] px-4 py-3 text-[#14532D] outline-none transition focus:border-[#D4AF37]"
                 />
               </div>
 
@@ -426,7 +426,7 @@ function Settings() {
                 <button
                   type="submit"
                   disabled={loading.profile}
-                  className="rounded-xl bg-[#D4AF37] px-5 py-3 font-semibold text-black transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="rounded-xl bg-[#D4AF37] px-5 py-3 font-semibold text-[#14532D] transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {loading.profile ? "Saving..." : "Save Changes"}
                 </button>
@@ -436,19 +436,19 @@ function Settings() {
 
           {activeTab === "documents" && (
             <div className="space-y-6">
-              <div className="rounded-2xl border border-[#22362B] bg-[#0B1714] p-5">
+              <div className="rounded-2xl border border-[#DCE8DE] bg-[#FFFFFF] p-5">
                 <div className="flex items-center justify-between gap-3">
                   <div>
-                    <p className="text-sm text-[#8CA096]">Resume status</p>
-                    <h3 className="mt-1 text-xl font-semibold text-white">
+                    <p className="text-sm text-[#66816D]">Resume status</p>
+                    <h3 className="mt-1 text-xl font-semibold text-[#14532D]">
                       {resumeUrl ? "Uploaded and ready" : "Not uploaded yet"}
                     </h3>
                   </div>
                   <div
                     className={`rounded-full px-3 py-1 text-xs font-semibold ${
                       resumeUrl
-                        ? "bg-emerald-500/15 text-emerald-200"
-                        : "bg-[#1A3023] text-[#C7D2CC]"
+                        ? "bg-emerald-50 text-emerald-800"
+                        : "bg-[#EAF4EC] text-[#52705D]"
                     }`}
                   >
                     {resumeUrl ? "Active" : "Missing"}
@@ -456,15 +456,15 @@ function Settings() {
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-[#22362B] bg-[#0B1714] p-5">
+              <div className="rounded-2xl border border-[#DCE8DE] bg-[#FFFFFF] p-5">
                 <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                  <div className="flex items-center gap-3 text-[#C7D2CC]">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#D4AF37] text-black">
+                  <div className="flex items-center gap-3 text-[#52705D]">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#D4AF37] text-[#14532D]">
                       <FaFilePdf size={18} />
                     </div>
                     <div>
-                      <p className="font-medium text-white">{resumeName}</p>
-                      <p className="text-sm text-[#8CA096]">PDF only • Max 5MB</p>
+                      <p className="font-medium text-[#14532D]">{resumeName}</p>
+                      <p className="text-sm text-[#66816D]">PDF only • Max 5MB</p>
                     </div>
                   </div>
 
@@ -474,14 +474,14 @@ function Settings() {
                         href={resumeUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-2 rounded-xl border border-[#22362B] px-3 py-2 text-sm font-medium text-[#C7D2CC] transition hover:border-[#D4AF37] hover:text-white"
+                        className="inline-flex items-center gap-2 rounded-xl border border-[#DCE8DE] px-3 py-2 text-sm font-medium text-[#52705D] transition hover:border-[#D4AF37] hover:text-[#14532D]"
                       >
                         <FaDownload size={14} />
                         View / Download
                       </a>
                     )}
 
-                    <label className="inline-flex cursor-pointer items-center justify-center rounded-xl bg-[#D4AF37] px-4 py-2 text-sm font-semibold text-black transition hover:scale-[1.02]">
+                    <label className="inline-flex cursor-pointer items-center justify-center rounded-xl bg-[#D4AF37] px-4 py-2 text-sm font-semibold text-[#14532D] transition hover:scale-[1.02]">
                       {resumeUrl ? "Replace resume" : "Upload resume"}
                       <input
                         type="file"
@@ -496,7 +496,7 @@ function Settings() {
                         type="button"
                         onClick={handleResumeDelete}
                         disabled={loading.deleteResume}
-                        className="inline-flex items-center gap-2 rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-2 text-sm font-medium text-red-200 transition hover:bg-red-500/20 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="inline-flex items-center gap-2 rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-2 text-sm font-medium text-red-700 transition hover:bg-red-500/20 disabled:cursor-not-allowed disabled:opacity-50"
                       >
                         <FaTrash size={12} />
                         {loading.deleteResume ? "Deleting..." : "Delete"}
@@ -507,7 +507,7 @@ function Settings() {
               </div>
 
               {!isFreelancer && (
-                <div className="rounded-2xl border border-[#22362B] bg-[#0B1714] p-5 text-sm text-[#C7D2CC]">
+                <div className="rounded-2xl border border-[#DCE8DE] bg-[#FFFFFF] p-5 text-sm text-[#52705D]">
                   Resume management is available for freelancer accounts only.
                 </div>
               )}
@@ -517,7 +517,7 @@ function Settings() {
           {activeTab === "security" && (
             <form onSubmit={handlePasswordChange} className="space-y-5">
               <div>
-                <label className="mb-2 block text-sm font-medium text-[#C7D2CC]">Current password</label>
+                <label className="mb-2 block text-sm font-medium text-[#52705D]">Current password</label>
                 <input
                   type="password"
                   value={passwordForm.currentPassword}
@@ -527,12 +527,12 @@ function Settings() {
                       currentPassword: event.target.value,
                     }))
                   }
-                  className="w-full rounded-xl border border-[#22362B] bg-[#07140E] px-4 py-3 text-white outline-none transition focus:border-[#D4AF37]"
+                  className="w-full rounded-xl border border-[#DCE8DE] bg-[#FFFFFF] px-4 py-3 text-[#14532D] outline-none transition focus:border-[#D4AF37]"
                 />
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium text-[#C7D2CC]">New password</label>
+                <label className="mb-2 block text-sm font-medium text-[#52705D]">New password</label>
                 <input
                   type="password"
                   value={passwordForm.newPassword}
@@ -542,12 +542,12 @@ function Settings() {
                       newPassword: event.target.value,
                     }))
                   }
-                  className="w-full rounded-xl border border-[#22362B] bg-[#07140E] px-4 py-3 text-white outline-none transition focus:border-[#D4AF37]"
+                  className="w-full rounded-xl border border-[#DCE8DE] bg-[#FFFFFF] px-4 py-3 text-[#14532D] outline-none transition focus:border-[#D4AF37]"
                 />
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium text-[#C7D2CC]">Confirm password</label>
+                <label className="mb-2 block text-sm font-medium text-[#52705D]">Confirm password</label>
                 <input
                   type="password"
                   value={passwordForm.confirmPassword}
@@ -557,7 +557,7 @@ function Settings() {
                       confirmPassword: event.target.value,
                     }))
                   }
-                  className="w-full rounded-xl border border-[#22362B] bg-[#07140E] px-4 py-3 text-white outline-none transition focus:border-[#D4AF37]"
+                  className="w-full rounded-xl border border-[#DCE8DE] bg-[#FFFFFF] px-4 py-3 text-[#14532D] outline-none transition focus:border-[#D4AF37]"
                 />
               </div>
 
@@ -565,7 +565,7 @@ function Settings() {
                 <button
                   type="submit"
                   disabled={loading.password}
-                  className="rounded-xl bg-[#D4AF37] px-5 py-3 font-semibold text-black transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="rounded-xl bg-[#D4AF37] px-5 py-3 font-semibold text-[#14532D] transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {loading.password ? "Updating..." : "Change Password"}
                 </button>
@@ -575,17 +575,17 @@ function Settings() {
 
           {activeTab === "danger" && (
             <div className="space-y-6">
-              <div className="rounded-2xl border border-[#22362B] bg-[#0B1714] p-5">
+              <div className="rounded-2xl border border-[#DCE8DE] bg-[#FFFFFF] p-5">
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <p className="text-sm text-[#8CA096]">Session</p>
-                    <h3 className="mt-1 text-xl font-semibold text-white">Logout</h3>
+                    <p className="text-sm text-[#66816D]">Session</p>
+                    <h3 className="mt-1 text-xl font-semibold text-[#14532D]">Logout</h3>
                   </div>
 
                   <button
                     type="button"
                     onClick={handleLogout}
-                    className="inline-flex items-center gap-2 rounded-xl border border-[#22362B] px-4 py-2 font-medium text-[#C7D2CC] transition hover:border-[#D4AF37] hover:text-white"
+                    className="inline-flex items-center gap-2 rounded-xl border border-[#DCE8DE] px-4 py-2 font-medium text-[#52705D] transition hover:border-[#D4AF37] hover:text-[#14532D]"
                   >
                     <FaSignOutAlt size={14} />
                     Logout
@@ -596,15 +596,15 @@ function Settings() {
               <div className="rounded-2xl border border-red-500/30 bg-red-500/10 p-5">
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                   <div>
-                    <p className="text-sm text-red-200">Danger Zone</p>
-                    <h3 className="mt-1 text-xl font-semibold text-white">Delete account</h3>
+                    <p className="text-sm text-red-700">Danger Zone</p>
+                    <h3 className="mt-1 text-xl font-semibold text-[#14532D]">Delete account</h3>
                   </div>
 
                   <button
                     type="button"
                     onClick={handleDeleteAccount}
                     disabled={loading.delete}
-                    className="inline-flex items-center gap-2 rounded-xl border border-red-500/50 bg-red-500/15 px-4 py-2 font-medium text-red-100 transition hover:bg-red-500/25 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="inline-flex items-center gap-2 rounded-xl border border-red-500/50 bg-red-500/15 px-4 py-2 font-medium text-red-700 transition hover:bg-red-500/25 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <FaTrash size={14} />
                     {loading.delete ? "Deleting..." : "Delete Account"}

@@ -25,8 +25,8 @@ export default function StatusFilter({
 
             ${
               currentStatus === status
-                ? "bg-[#D4AF37] text-[#07140E]"
-                : "bg-[#16281F] text-[#C7D2CC] hover:bg-[#22362B]"
+                ? "bg-[#D4AF37] text-[#14532D]"
+                : "bg-[#F1F7F1] text-[#52705D] hover:bg-[#DCE8DE]"
             }
           `}
         >

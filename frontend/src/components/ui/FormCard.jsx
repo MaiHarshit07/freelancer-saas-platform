@@ -4,8 +4,8 @@ function FormCard({ children }) {
       className="
         rounded-2xl
         border
-        border-[#22362B]
-        bg-[#102018]
+        border-[#DCE8DE]
+        bg-[#FFFFFF]
         p-8
         shadow-lg
       "
